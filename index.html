@@ -1,9 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>ReConnect | Find Your Childhood Friends</title>
 
@@ -37,6 +40,7 @@ body {
     --light-purple: #faf7ff;
     --border: #e8dcfa;
 }
+
 
 /* ========================================
    HEADER
@@ -82,6 +86,7 @@ header {
 .logo-text span {
     color: var(--primary);
 }
+
 
 /* ========================================
    NAVIGATION
@@ -129,29 +134,19 @@ nav a.active::after {
     background: var(--primary);
 }
 
+
 /* ========================================
-   HERO SECTION
+   HERO
 ======================================== */
 
 .hero {
-
     min-height: 620px;
-
     padding: 0 5.5% 30px;
 
     display: grid;
-
     grid-template-columns: 0.85fr 1.15fr;
-
     align-items: start;
-
     gap: 25px;
-
-    /*
-       IMPORTANT:
-       Allow hero image to move upward
-       without being clipped.
-    */
 
     overflow: visible;
 
@@ -168,109 +163,54 @@ nav a.active::after {
         );
 }
 
-/* ========================================
-   HERO CONTENT
-======================================== */
-
 .hero-content {
-
     max-width: 620px;
-
-    /*
-       Move text upward
-       and reduce empty space.
-    */
-
     margin-top: 54px;
-
 }
-
-/* ========================================
-   EYEBROW
-======================================== */
 
 .eyebrow {
-
     font-size: 17px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     color: #b8a0e8;
-
     margin-bottom: 20px;
-
 }
 
-/* ========================================
-   HEADING
-======================================== */
-
 .hero h1 {
-
     font-size: 56px;
-
     line-height: 1.1;
-
     letter-spacing: -1.5px;
-
     color: var(--dark);
-
     margin-bottom: 22px;
-
     font-weight: 800;
-
 }
 
 .hero h1 span {
     color: var(--primary);
 }
 
-/* ========================================
-   DESCRIPTION
-======================================== */
-
 .hero-description {
-
     font-size: 20px;
-
     line-height: 1.55;
-
     color: #85829a;
-
     margin-bottom: 30px;
-
     max-width: 570px;
-
 }
 
-/* ========================================
-   SEARCH BUTTON
-======================================== */
-
 .search-btn {
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 18px;
 
     border: none;
-
     border-radius: 45px;
-
     padding: 18px 30px;
 
     background: var(--primary);
-
     color: #ffffff;
 
     font-size: 18px;
-
     font-weight: 700;
 
     cursor: pointer;
@@ -278,112 +218,70 @@ nav a.active::after {
     box-shadow: 0 15px 35px #6827cf32;
 
     transition: 0.2s ease;
-
 }
 
 .search-btn:hover {
-
     background: var(--dark);
-
     transform: translateY(-2px);
-
 }
 
-/* ========================================
-   HERO IMAGE CONTAINER
-======================================== */
-
 .hero-image-container {
-
     width: 100%;
 
     display: flex;
-
     justify-content: center;
-
     align-items: flex-start;
 
-    /*
-       MAIN FIX:
-       Move image upward.
-    */
-
     position: relative;
-
     top: -70px;
 
     overflow: visible;
-
     z-index: 1;
-
 }
-
-/* ========================================
-   HERO IMAGE
-======================================== */
 
 .hero-image {
     width: 100%;
     max-width: 850px;
     height: auto;
-
-    /* Move the image down */
     transform: translateY(100px);
 }
+
+
 /* ========================================
-   FEATURES SECTION
+   FEATURES
 ======================================== */
 
 .features {
-
     padding: 80px 9%;
-
     background: #ffffff;
-
 }
 
 .section-title {
-
     text-align: center;
-
     margin-bottom: 40px;
-
 }
 
 .section-title h2 {
-
     color: var(--dark);
-
     font-size: 36px;
-
     margin-bottom: 12px;
-
 }
 
 .section-title p {
-
     color: var(--text);
-
     font-size: 18px;
-
 }
 
 .feature-grid {
-
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 25px;
-
 }
 
 .feature-card {
-
     padding: 32px;
 
     border: 1px solid var(--border);
-
     border-radius: 20px;
 
     background: #ffffff;
@@ -391,53 +289,37 @@ nav a.active::after {
     box-shadow: 0 10px 30px #4c248c0c;
 
     transition: 0.2s ease;
-
 }
 
 .feature-card:hover {
-
     transform: translateY(-5px);
-
     box-shadow: 0 15px 35px #4c248c15;
-
 }
 
 .feature-card h3 {
-
     color: var(--dark);
-
     font-size: 23px;
-
     margin-bottom: 12px;
-
 }
 
 .feature-card p {
-
     color: var(--text);
-
     font-size: 16px;
-
     line-height: 1.6;
-
 }
 
+
 /* ========================================
-   REGISTER & FIND SECTION
+   REGISTER & FIND
 ======================================== */
 
 .find-section {
-
     padding: 80px 9%;
-
     background: var(--light-purple);
-
 }
 
 .find-box {
-
     max-width: 1100px;
-
     margin: auto;
 
     padding: 40px;
@@ -447,70 +329,177 @@ nav a.active::after {
     background: #ffffff;
 
     box-shadow: 0 10px 35px #4c248c10;
-
 }
 
 .find-box h2 {
-
     text-align: center;
-
     color: var(--dark);
-
     font-size: 34px;
-
     margin-bottom: 30px;
-
 }
 
 .form-grid {
-
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 20px;
-
 }
 
 .field label {
-
     display: block;
-
     color: var(--dark);
-
     font-weight: 700;
-
     margin-bottom: 8px;
-
 }
 
 .field input,
 .field select {
-
     width: 100%;
-
     padding: 14px;
 
     border: 1px solid #ded1f3;
-
     border-radius: 10px;
 
     font-size: 16px;
-
     outline: none;
-
 }
 
 .field input:focus,
 .field select:focus {
-
     border-color: var(--primary);
-
     box-shadow: 0 0 0 3px #6827cf12;
-
 }
 
 .find-button {
+    display: block;
+
+    margin: 28px auto 0;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 16px 30px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.find-button:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+}
+
+#results {
+    margin-top: 30px;
+}
+
+
+/* ========================================
+   PHONE INFORMATION BOX
+======================================== */
+
+.phone-info-box {
+
+    margin-top: 20px;
+
+    padding: 16px 18px;
+
+    background: #f7f2ff;
+
+    border: 1px solid #e4d5fa;
+
+    border-radius: 13px;
+
+    color: #68657e;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.phone-info-box strong {
+    color: #201747;
+}
+
+
+/* ========================================
+   MY PROFILE
+======================================== */
+
+.my-profile-section {
+
+    padding: 80px 9%;
+
+    background: #ffffff;
+}
+
+.my-profile-box {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow: 0 10px 35px #4c248c10;
+}
+
+.my-profile-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-top: 25px;
+}
+
+.my-profile-item {
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: #faf7ff;
+
+    border: 1px solid #eee3fc;
+}
+
+.my-profile-item span {
+
+    display: block;
+
+    font-size: 13px;
+
+    color: #8b879d;
+
+    margin-bottom: 7px;
+}
+
+.my-profile-item strong {
+
+    color: var(--dark);
+
+    font-size: 17px;
+
+    word-break: break-word;
+}
+
+.edit-profile-btn {
 
     display: block;
 
@@ -520,38 +509,641 @@ nav a.active::after {
 
     border-radius: 12px;
 
-    padding: 16px 30px;
+    padding: 15px 30px;
 
     background: var(--primary);
 
     color: white;
 
-    font-size: 17px;
+    font-size: 16px;
 
     font-weight: 700;
 
     cursor: pointer;
 
     transition: 0.2s ease;
-
 }
 
-.find-button:hover {
+.edit-profile-btn:hover {
 
     background: var(--dark);
 
     transform: translateY(-2px);
-
 }
 
-#results {
-
-    margin-top: 30px;
-
-}
 
 /* ========================================
-   ABOUT SECTION
+   CONNECTIONS
+======================================== */
+
+.connections-section {
+    padding: 80px 9%;
+    background: #ffffff;
+}
+
+.connections-box {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.connections-box h2 {
+    text-align: center;
+    color: var(--dark);
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.connections-subtitle {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.connection-card {
+    padding: 22px;
+    margin-top: 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow: 0 8px 25px #4c248c10;
+}
+
+.connection-card h3 {
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.connection-card p {
+    color: var(--text);
+    margin: 6px 0;
+}
+
+.connection-card .connected-label {
+    display: inline-block;
+
+    margin-top: 12px;
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #edf9f1;
+    color: #228b22;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.phone-number {
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #f0faf3;
+
+    border: 1px solid #d7efdd;
+
+    color: #176b2c;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.call-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    background: #228b22;
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.call-btn:hover {
+
+    background: #176b2c;
+}
+
+
+/* ========================================
+   REQUEST POPUP
+======================================== */
+
+.request-overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(32, 23, 71, 0.35);
+
+    z-index: 5000;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.request-popup {
+    width: 100%;
+    max-width: 480px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow: 0 25px 70px rgba(32, 23, 71, 0.25);
+
+    animation: popupIn 0.2s ease;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+@keyframes popupIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.request-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1e8ff;
+
+    font-size: 27px;
+}
+
+.request-popup h3 {
+    text-align: center;
+    color: var(--dark);
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.request-popup > p {
+    text-align: center;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.request-profile {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: #faf7ff;
+
+    border: 1px solid var(--border);
+}
+
+.request-profile p {
+    color: var(--text);
+    margin: 7px 0;
+}
+
+.request-profile strong {
+    color: var(--dark);
+}
+
+.request-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.request-actions button {
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 13px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.view-profile-btn {
+    background: #f1e8ff;
+    color: var(--primary);
+}
+
+.accept-btn {
+    background: #228b22;
+    color: white;
+}
+
+.decline-btn {
+    background: #f5eeee;
+    color: #c62828;
+}
+
+.close-popup-btn {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 11px;
+
+    border: 1px solid #e5dcef;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   PROFILE MODAL
+======================================== */
+
+.profile-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(32, 23, 71, 0.35);
+
+    z-index: 5100;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.profile-modal {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(32, 23, 71, 0.25);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+.profile-modal h3 {
+
+    color: var(--dark);
+
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+.profile-details {
+
+    padding: 20px;
+
+    background: #faf7ff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+}
+
+.profile-details p {
+
+    margin: 10px 0;
+
+    color: var(--text);
+}
+
+.profile-details strong {
+
+    color: var(--dark);
+}
+
+
+/* ========================================
+   EDIT PROFILE MODAL
+======================================== */
+
+.edit-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(32, 23, 71, 0.40);
+
+    z-index: 5200;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.edit-modal {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(32, 23, 71, 0.25);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+.edit-modal h3 {
+
+    text-align: center;
+
+    color: var(--dark);
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.edit-modal > p {
+
+    text-align: center;
+
+    color: var(--text);
+
+    margin-bottom: 25px;
+}
+
+.edit-form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.edit-field label {
+
+    display: block;
+
+    color: var(--dark);
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.edit-field input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+        1px solid #ded1f3;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.edit-field input:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        #6827cf12;
+}
+
+.edit-help {
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    background: #faf7ff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.edit-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.save-edit-btn {
+
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 14px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.cancel-edit-btn {
+
+    border:
+        1px solid #e5dcef;
+
+    border-radius: 11px;
+
+    padding: 14px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   TOAST
+======================================== */
+
+.toast-container {
+
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    z-index: 10000;
+
+    width:
+        min(390px,
+        calc(100vw - 40px));
+}
+
+.toast {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 16px 18px;
+
+    margin-bottom: 10px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(32, 23, 71, 0.16);
+
+    animation:
+        toastIn 0.25s ease;
+}
+
+@keyframes toastIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.toast strong {
+
+    color: var(--dark);
+}
+
+.toast p {
+
+    color: var(--text);
+
+    margin-top: 5px;
+
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   ABOUT
 ======================================== */
 
 .about {
@@ -561,7 +1153,6 @@ nav a.active::after {
     text-align: center;
 
     background: white;
-
 }
 
 .about h2 {
@@ -571,7 +1162,6 @@ nav a.active::after {
     color: var(--dark);
 
     margin-bottom: 20px;
-
 }
 
 .about p {
@@ -585,8 +1175,8 @@ nav a.active::after {
     font-size: 18px;
 
     line-height: 1.7;
-
 }
+
 
 /* ========================================
    FOOTER
@@ -601,17 +1191,16 @@ footer {
     background: var(--dark);
 
     color: white;
-
 }
 
 footer span {
 
     color: #cdb3ff;
-
 }
 
+
 /* ========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ======================================== */
 
 @media (max-width: 1300px) {
@@ -651,21 +1240,22 @@ footer span {
     .hero-image-container {
         top: -50px;
     }
-
 }
+
 
 @media (max-width: 1000px) {
 
     header {
 
         height: auto;
+
         min-height: 100px;
 
         padding: 20px 5%;
 
         flex-wrap: wrap;
-        gap: 20px;
 
+        gap: 20px;
     }
 
     nav {
@@ -675,7 +1265,6 @@ footer span {
         justify-content: center;
 
         gap: 28px;
-
     }
 
     .hero {
@@ -685,7 +1274,6 @@ footer span {
         text-align: center;
 
         padding: 30px 5% 40px;
-
     }
 
     .hero-content {
@@ -693,13 +1281,12 @@ footer span {
         max-width: 700px;
 
         margin: 0 auto;
-
     }
 
     .hero-description {
 
-        margin: 0 auto 30px;
-
+        margin:
+            0 auto 30px;
     }
 
     .hero-image-container {
@@ -709,101 +1296,161 @@ footer span {
         margin: auto;
 
         top: -25px;
-
     }
 
     .feature-grid {
 
         grid-template-columns: 1fr;
-
     }
-
 }
+
 
 @media (max-width: 600px) {
 
     header {
+
         padding: 15px 5%;
     }
 
     .logo img {
+
         width: 75px;
+
         height: auto;
     }
 
     .logo-text {
+
         font-size: 27px;
     }
 
     nav {
+
         gap: 16px;
-        justify-content: space-between;
+
+        justify-content:
+            space-between;
+
+        overflow-x: auto;
+
+        padding-bottom: 5px;
     }
 
     nav a {
+
         font-size: 14px;
     }
 
     nav a.active::after {
+
         bottom: -10px;
     }
 
     .hero {
-        padding: 25px 5% 35px;
+
+        padding:
+            25px 5% 35px;
     }
 
     .hero h1 {
+
         font-size: 40px;
+
         letter-spacing: -1px;
     }
 
     .hero-description {
+
         font-size: 17px;
     }
 
     .eyebrow {
+
         font-size: 13px;
+
         letter-spacing: 2px;
     }
 
     .search-btn {
-        padding: 17px 25px;
+
+        padding:
+            17px 25px;
+
         font-size: 17px;
     }
 
     .hero-image-container {
+
         top: -10px;
     }
 
     .features,
     .find-section,
+    .connections-section,
+    .my-profile-section,
     .about {
-        padding: 55px 5%;
+
+        padding:
+            55px 5%;
     }
 
     .section-title h2,
     .about h2 {
+
         font-size: 30px;
     }
 
     .form-grid {
+
         grid-template-columns: 1fr;
     }
 
     .find-box {
+
         padding: 25px;
+    }
+
+    .my-profile-box {
+
+        padding: 25px;
+    }
+
+    .my-profile-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .request-actions {
+
+        grid-template-columns: 1fr;
+    }
+
+    .edit-form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .edit-actions {
+
+        grid-template-columns: 1fr;
+    }
+
+    .connection-phone {
+
+        flex-direction: column;
+
+        align-items: flex-start;
     }
 
 }
 
-/* ========================================
-   END CSS
-======================================== */
-
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ========================================
      HEADER
@@ -811,7 +1458,8 @@ footer span {
 
 <header>
 
-    <a href="#home" class="logo">
+    <a href="#home"
+       class="logo">
 
         <img src="./logo.png"
              alt="ReConnect Logo">
@@ -827,30 +1475,101 @@ footer span {
 
     <nav>
 
-        <a href="#home" class="active">Home</a>
+        <a href="#home"
+           class="active">
 
-        <a href="#register">Register</a>
+            Home
 
-        <a href="#find">Find Friends</a>
+        </a>
 
-        <a href="#about">About</a>
+        <a href="#register">
+
+            Register
+
+        </a>
+
+        <a href="#find">
+
+            Find Friends
+
+        </a>
+
+        <a href="#myProfile">
+
+            My Profile
+
+        </a>
+
+        <a href="#connections">
+
+            My Connections
+
+        </a>
+
+        <a href="#about">
+
+            About
+
+        </a>
 
     </nav>
 
 </header>
 
 
+
 <!-- ========================================
-     HERO SECTION
+     REALTIME STATUS
 ======================================== -->
 
-<section class="hero" id="home">
+<div id="realtimeStatus"
+     style="
+        position:fixed;
+        right:18px;
+        bottom:18px;
+        z-index:1000;
+        background:#fff;
+        border:1px solid #e8dcfa;
+        border-radius:999px;
+        padding:10px 16px;
+        box-shadow:0 8px 25px rgba(32,23,71,.12);
+        font-size:13px;
+        color:#68657e;
+     ">
+
+    <span id="statusDot"
+          style="
+            display:inline-block;
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background:#999;
+            margin-right:7px;
+          ">
+    </span>
+
+    <span id="statusText">
+        Connecting...
+    </span>
+
+</div>
+
+
+
+<!-- ========================================
+     HERO
+======================================== -->
+
+<section class="hero"
+         id="home">
 
     <div class="hero-content">
 
         <p class="eyebrow">
 
-            OLD FRIENDS &nbsp; • &nbsp; NEW BEGINNINGS
+            OLD FRIENDS
+            &nbsp; • &nbsp;
+            NEW BEGINNINGS
 
         </p>
 
@@ -866,9 +1585,10 @@ footer span {
 
         <p class="hero-description">
 
-            Relive your school days, reconnect with old friends,
-
-            and build new memories — all in one place.
+            Relive your school days,
+            reconnect with old friends,
+            and build new memories —
+            all in one place.
 
         </p>
 
@@ -876,7 +1596,10 @@ footer span {
         <button class="search-btn"
                 onclick="goToFindFriends()">
 
-            🔍 &nbsp; Start Searching &nbsp; →
+            🔍
+            &nbsp;
+            Start Searching
+            &nbsp; →
 
         </button>
 
@@ -886,31 +1609,37 @@ footer span {
     <div class="hero-image-container">
 
         <img src="./hero-image.png"
-
              alt="Friends enjoying their childhood memories"
-
              class="hero-image"
-
-             onerror="this.alt='Hero image could not be loaded';">
+             onerror="
+                this.alt='Hero image could not be loaded';
+             ">
 
     </div>
 
 </section>
 
 
+
 <!-- ========================================
-     FEATURES SECTION
+     FEATURES
 ======================================== -->
 
 <section class="features">
 
     <div class="section-title">
 
-        <h2>Reconnect With Your Friends</h2>
+        <h2>
+
+            Reconnect With Your Friends
+
+        </h2>
+
 
         <p>
 
-            Find old friends and bring back meaningful memories.
+            Find old friends and bring back
+            meaningful memories.
 
         </p>
 
@@ -919,15 +1648,17 @@ footer span {
 
     <div class="feature-grid">
 
+
         <div class="feature-card">
 
-            <h3>Reconnect</h3>
+            <h3>
+                Reconnect
+            </h3>
 
             <p>
 
-                Find old school friends using school,
-
-                village and batch details.
+                Find old school friends using
+                school, village and batch details.
 
             </p>
 
@@ -936,12 +1667,13 @@ footer span {
 
         <div class="feature-card">
 
-            <h3>Make Memories</h3>
+            <h3>
+                Make Memories
+            </h3>
 
             <p>
 
                 Bring back meaningful friendships
-
                 and shared childhood memories.
 
             </p>
@@ -951,13 +1683,213 @@ footer span {
 
         <div class="feature-card">
 
-            <h3>Stay Connected</h3>
+            <h3>
+                Stay Connected
+            </h3>
 
             <p>
 
-                Send connection requests while
+                Send connection requests and
+                exchange contact details after
+                the connection is accepted.
 
-                keeping contact details private.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================
+     REGISTER
+======================================== -->
+
+<section class="find-section"
+         id="register">
+
+    <div class="find-box">
+
+        <h2>
+            Create Your Profile
+        </h2>
+
+
+        <form id="registerForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        School Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="schoolName"
+                        placeholder="Enter your school"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Batch Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="batchYear"
+                        placeholder="Example: 2015"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Village / Hometown
+                    </label>
+
+                    <input
+                        type="text"
+                        id="villageName"
+                        placeholder="Enter village name"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobileNumber"
+                        placeholder="Enter 10-digit mobile number"
+                        maxlength="10"
+                        inputmode="numeric"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PHONE INFORMATION -->
+
+            <div class="phone-info-box">
+
+                📱 <strong>About your phone number</strong>
+
+                <br><br>
+
+                Your mobile number is collected
+                to help you reconnect with your friends.
+
+                <br>
+
+                <strong>
+                    It will not be shown in search results
+                    or while a request is pending.
+                </strong>
+
+                <br>
+
+                After you accept a connection request,
+                your mobile number will automatically
+                become visible to that accepted connection.
+
+            </div>
+
+
+            <button
+                class="find-button"
+                type="submit">
+
+                Save Profile
+
+            </button>
+
+
+        </form>
+
+
+        <p id="registerMessage"
+           style="
+                text-align:center;
+                margin-top:20px;
+           ">
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================
+     MY PROFILE
+======================================== -->
+
+<section class="my-profile-section"
+         id="myProfile">
+
+    <div class="my-profile-box">
+
+        <div class="section-title"
+             style="margin-bottom:0;">
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p>
+                View and update your saved details.
+            </p>
+
+        </div>
+
+
+        <div id="myProfileContent">
+
+            <p style="
+                text-align:center;
+                color:#68657e;
+                margin-top:25px;
+            ">
+
+                Create your profile to view
+                your saved details.
 
             </p>
 
@@ -968,230 +1900,72 @@ footer span {
 </section>
 
 
+
 <!-- ========================================
-     REGISTER SECTION
+     FIND FRIENDS
 ======================================== -->
 
-<section class="find-section" id="register">
+<section class="find-section"
+         id="find">
 
     <div class="find-box">
 
-        <h2>Create Your Profile</h2>
-
-
-        <form id="registerForm">
-
-            <div class="form-grid">
-
-                <div class="field">
-
-                    <label>Full Name</label>
-
-                    <input type="text"
-
-                           id="fullName"
-
-                           placeholder="Enter your full name"
-
-                           required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>School Name</label>
-
-                    <input type="text"
-
-                           id="schoolName"
-
-                           placeholder="Enter your school"
-
-                           required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>Batch Year</label>
-
-                    <input type="number"
-
-                           id="batchYear"
-
-                           placeholder="Example: 2015"
-
-                           required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>Village / Hometown</label>
-
-                    <input type="text"
-
-                           id="villageName"
-
-                           placeholder="Enter village name"
-
-                           required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>Mobile Number</label>
-
-                    <input type="tel"
-
-                           id="mobileNumber"
-
-                           placeholder="Enter mobile number"
-
-                           maxlength="10"
-
-                           required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>Phone Visibility</label>
-
-                    <select id="phoneVisibility">
-
-                        <option value="private">
-
-                            Private
-
-                        </option>
-
-
-                        <option value="connections">
-
-                            Accepted Connections
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div style="margin-top:20px;">
-
-                <label style="display:flex;gap:10px;align-items:flex-start;">
-
-                    <input type="checkbox"
-
-                           id="phonePermission"
-
-                           required
-
-                           style="width:auto;margin-top:4px;">
-
-                    <span>
-
-                        I agree to store my phone number
-
-                        and allow visibility based on my
-
-                        selected privacy setting.
-
-                    </span>
-
-                </label>
-
-            </div>
-
-
-            <button class="find-button"
-
-                    type="submit">
-
-                Save Profile
-
-            </button>
-
-        </form>
-
-
-        <p id="registerMessage"
-
-           style="text-align:center;margin-top:20px;">
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ========================================
-     FIND FRIENDS SECTION
-======================================== -->
-
-<section class="find-section" id="find">
-
-    <div class="find-box">
-
-        <h2>Find Your Friends</h2>
+        <h2>
+            Find Your Friends
+        </h2>
 
 
         <div class="form-grid">
 
+
             <div class="field">
 
-                <label>Village / Hometown</label>
+                <label>
+                    Village / Hometown
+                </label>
 
-                <input type="text"
-
-                       id="searchVillage"
-
-                       placeholder="Enter village">
+                <input
+                    type="text"
+                    id="searchVillage"
+                    placeholder="Enter village">
 
             </div>
 
 
             <div class="field">
 
-                <label>School Name</label>
+                <label>
+                    School Name
+                </label>
 
-                <input type="text"
-
-                       id="searchSchool"
-
-                       placeholder="Enter school">
+                <input
+                    type="text"
+                    id="searchSchool"
+                    placeholder="Enter school">
 
             </div>
 
 
             <div class="field">
 
-                <label>Batch Year</label>
+                <label>
+                    Batch Year
+                </label>
 
-                <input type="number"
-
-                       id="searchBatch"
-
-                       placeholder="Example: 2015">
+                <input
+                    type="number"
+                    id="searchBatch"
+                    placeholder="Example: 2015">
 
             </div>
+
 
         </div>
 
 
-        <button class="find-button"
-
-                onclick="searchFriends()">
+        <button
+            class="find-button"
+            onclick="searchFriends()">
 
             Search Friends
 
@@ -1205,30 +1979,74 @@ footer span {
 </section>
 
 
+
 <!-- ========================================
-     ABOUT SECTION
+     MY CONNECTIONS
 ======================================== -->
 
-<section class="about" id="about">
+<section class="connections-section"
+         id="connections">
 
-    <h2>About ReConnect</h2>
+    <div class="connections-box">
+
+        <h2>
+            My Connections
+        </h2>
+
+
+        <p class="connections-subtitle">
+
+            Friends who have accepted
+            your connection.
+
+        </p>
+
+
+        <div id="connectionsList">
+
+            <p style="
+                text-align:center;
+                color:#68657e;
+            ">
+
+                Create your profile to see
+                your connections.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================
+     ABOUT
+======================================== -->
+
+<section class="about"
+         id="about">
+
+    <h2>
+        About ReConnect
+    </h2>
 
 
     <p>
 
-        ReConnect is designed to help people find
-
-        their childhood friends through school,
-
-        village and batch information.
+        ReConnect is designed to help people
+        find their childhood friends through
+        school, village and batch information.
 
         Our goal is to bring back friendships
-
         and meaningful memories.
 
     </p>
 
 </section>
+
 
 
 <!-- ========================================
@@ -1239,8 +2057,8 @@ footer span {
 
     <p>
 
-        <span>ReConnect</span> © 2026.
-
+        <span>ReConnect</span>
+        © 2026.
         All Rights Reserved.
 
     </p>
@@ -1248,11 +2066,321 @@ footer span {
 </footer>
 
 
+
 <!-- ========================================
-     JAVASCRIPT
+     CONNECTION REQUEST POPUP
 ======================================== -->
 
+<div class="request-overlay"
+     id="requestOverlay">
+
+    <div class="request-popup">
+
+
+        <div class="request-icon">
+            👋
+        </div>
+
+
+        <h3 id="requestTitle">
+
+            New Connection Request
+
+        </h3>
+
+
+        <p id="requestMessage">
+
+            Someone wants to reconnect with you.
+
+        </p>
+
+
+        <div class="request-profile"
+             id="requestProfile">
+
+        </div>
+
+
+        <div class="request-actions">
+
+
+            <button
+                class="view-profile-btn"
+                onclick="viewRequestProfile()">
+
+                👤 View Profile
+
+            </button>
+
+
+            <button
+                class="accept-btn"
+                onclick="acceptCurrentRequest()">
+
+                ✓ Accept
+
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="decline-btn"
+            style="
+                width:100%;
+                margin-top:12px;
+            "
+            onclick="declineCurrentRequest()">
+
+            ✕ Decline
+
+        </button>
+
+
+        <button
+            class="close-popup-btn"
+            onclick="closeRequestPopup()">
+
+            Close
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================
+     PROFILE MODAL
+======================================== -->
+
+<div class="profile-overlay"
+     id="profileOverlay">
+
+    <div class="profile-modal">
+
+
+        <h3>
+            Friend Profile
+        </h3>
+
+
+        <div
+            class="profile-details"
+            id="profileDetails">
+
+        </div>
+
+
+        <button
+            class="find-button"
+            style="width:100%;"
+            onclick="closeProfileModal()">
+
+            Close
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================
+     EDIT PROFILE MODAL
+======================================== -->
+
+<div class="edit-overlay"
+     id="editProfileOverlay">
+
+    <div class="edit-modal">
+
+
+        <h3>
+            Edit Profile
+        </h3>
+
+
+        <p>
+            Correct or update your saved details.
+        </p>
+
+
+        <form id="editProfileForm">
+
+
+            <div class="edit-form-grid">
+
+
+                <div class="edit-field">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editFullName"
+                        required>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label>
+                        School Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editSchoolName"
+                        required>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label>
+                        Batch Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editBatchYear"
+                        required>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label>
+                        Village / Hometown
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editVillageName"
+                        required>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editMobileNumber"
+                        maxlength="10"
+                        inputmode="numeric"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="edit-help">
+
+                📱 Your phone number will remain hidden
+                from people who are not connected with you.
+
+                <br><br>
+
+                Once you accept someone's connection
+                request, your number becomes visible
+                to that accepted connection automatically.
+
+            </div>
+
+
+            <div class="edit-actions">
+
+
+                <button
+                    type="button"
+                    class="cancel-edit-btn"
+                    onclick="closeEditProfile()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-edit-btn">
+
+                    Save Changes
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================
+     TOAST CONTAINER
+======================================== -->
+
+<div class="toast-container"
+     id="toastContainer">
+
+</div>
+
+
+
+<!-- ========================================
+     SOCKET.IO
+======================================== -->
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+
 <script>
+
+/* ========================================
+   ReConnect FRONTEND
+======================================== */
+
+const API_BASE =
+    "https://reconnect-backend-q4r0.onrender.com";
+
+
+let currentProfile =
+    JSON.parse(
+        localStorage.getItem(
+            "reconnectProfile"
+        ) || "null"
+    );
+
+
+let socket = null;
+
+let currentRequest = null;
+
 
 /* ========================================
    NAVIGATION
@@ -1260,326 +2388,2262 @@ footer span {
 
 function goToFindFriends() {
 
-    document.getElementById("find")
-
+    document
+        .getElementById("find")
         .scrollIntoView({
-
             behavior: "smooth"
-
         });
 
 }
 
 
 /* ========================================
-   DEMO PROFILE STORAGE
+   STATUS
 ======================================== */
 
-let profiles = [];
+function setStatus(
+    connected,
+    text
+) {
+
+    const dot =
+        document.getElementById(
+            "statusDot"
+        );
+
+    const label =
+        document.getElementById(
+            "statusText"
+        );
+
+    if (!dot || !label)
+        return;
+
+
+    dot.style.background =
+        connected
+            ? "#2e9d59"
+            : "#d7a21a";
+
+
+    label.textContent =
+        text;
+
+}
+
+
+/* ========================================
+   SOCKET CONNECTION
+======================================== */
+
+function connectRealtime() {
+
+    if (
+        typeof io ===
+        "undefined"
+    ) {
+
+        setStatus(
+            false,
+            "Realtime library unavailable"
+        );
+
+        return;
+    }
+
+
+    socket =
+        io(
+            API_BASE,
+            {
+                transports: [
+                    "websocket",
+                    "polling"
+                ]
+            }
+        );
+
+
+    socket.on(
+        "connect",
+        () => {
+
+            setStatus(
+                true,
+                "Real-time connected"
+            );
+
+
+            if (
+                currentProfile?._id
+            ) {
+
+                socket.emit(
+                    "register-user",
+                    currentProfile._id
+                );
+
+
+                loadPendingRequests();
+
+                loadConnections();
+
+                loadMyProfile();
+
+            }
+
+        }
+    );
+
+
+    socket.on(
+        "disconnect",
+        () => {
+
+            setStatus(
+                false,
+                "Reconnecting..."
+            );
+
+        }
+    );
+
+
+    socket.on(
+        "connect_error",
+        () => {
+
+            setStatus(
+                false,
+                "Server offline"
+            );
+
+        }
+    );
+
+
+    /* ========================================
+       NEW CONNECTION REQUEST
+    ======================================== */
+
+    socket.on(
+        "notification",
+        notification => {
+
+            if (
+                notification.type ===
+                "connection_request"
+            ) {
+
+                showConnectionRequest(
+                    notification
+                );
+
+            } else {
+
+                showToast(
+                    notification.title ||
+                    "ReConnect",
+                    notification.message ||
+                    ""
+                );
+
+            }
+
+        }
+    );
+
+
+    /* ========================================
+       ACCEPTED / DECLINED
+    ======================================== */
+
+    socket.on(
+        "connection-request-updated",
+        data => {
+
+            showToast(
+                data.title ||
+                "Connection update",
+                data.message ||
+                ""
+            );
+
+
+            loadConnections();
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   TOAST
+======================================== */
+
+function showToast(
+    title,
+    message
+) {
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        "toast";
+
+
+    toast.innerHTML = `
+        <strong>
+            ${escapeHtml(title)}
+        </strong>
+
+        <p>
+            ${escapeHtml(message)}
+        </p>
+    `;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.remove();
+
+        },
+        5000
+    );
+
+}
+
+
+/* ========================================
+   HTML ESCAPE
+======================================== */
+
+function escapeHtml(
+    value
+) {
+
+    return String(
+        value || ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ========================================
+   API HELPER
+======================================== */
+
+async function apiRequest(
+    path,
+    options = {}
+) {
+
+    const response =
+        await fetch(
+            API_BASE + path,
+            {
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    ...(options.headers || {})
+                },
+
+                ...options
+            }
+        );
+
+
+    const data =
+        await response
+            .json()
+            .catch(
+                () => ({})
+            );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "Something went wrong."
+        );
+
+    }
+
+
+    return data;
+
+}
 
 
 /* ========================================
    REGISTER PROFILE
 ======================================== */
 
-document.getElementById("registerForm")
+document
+    .getElementById(
+        "registerForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(event) {
 
-.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-
-    const name =
-
-        document.getElementById("fullName")
-
-        .value.trim();
+            event.preventDefault();
 
 
-    const school =
-
-        document.getElementById("schoolName")
-
-        .value.trim();
-
-
-    const batch =
-
-        document.getElementById("batchYear")
-
-        .value.trim();
+            const name =
+                document
+                    .getElementById(
+                        "fullName"
+                    )
+                    .value
+                    .trim();
 
 
-    const village =
-
-        document.getElementById("villageName")
-
-        .value.trim();
-
-
-    const phone =
-
-        document.getElementById("mobileNumber")
-
-        .value.trim();
+            const school =
+                document
+                    .getElementById(
+                        "schoolName"
+                    )
+                    .value
+                    .trim();
 
 
-    const visibility =
-
-        document.getElementById("phoneVisibility")
-
-        .value;
-
-
-    const message =
-
-        document.getElementById("registerMessage");
+            const batch =
+                document
+                    .getElementById(
+                        "batchYear"
+                    )
+                    .value
+                    .trim();
 
 
-    if (!/^[6-9][0-9]{9}$/.test(phone)) {
+            const village =
+                document
+                    .getElementById(
+                        "villageName"
+                    )
+                    .value
+                    .trim();
 
-        message.textContent =
 
-            "Enter a valid 10-digit Indian mobile number.";
+            const phone =
+                document
+                    .getElementById(
+                        "mobileNumber"
+                    )
+                    .value
+                    .trim();
 
-        message.style.color = "#d62828";
+
+            const message =
+                document
+                    .getElementById(
+                        "registerMessage"
+                    );
+
+
+            if (
+                !/^[6-9][0-9]{9}$/
+                    .test(phone)
+            ) {
+
+                message.textContent =
+                    "Enter a valid 10-digit Indian mobile number.";
+
+                message.style.color =
+                    "#d62828";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Creating your real profile...";
+
+            message.style.color =
+                "#68657e";
+
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        "/api/profile",
+                        {
+                            method: "POST",
+
+                            body:
+                                JSON.stringify({
+
+                                    fullName:
+                                        name,
+
+                                    schoolName:
+                                        school,
+
+                                    batchYear:
+                                        batch,
+
+                                    villageName:
+                                        village,
+
+                                    mobileNumber:
+                                        phone
+
+                                })
+                        }
+                    );
+
+
+                currentProfile =
+                    data.profile;
+
+
+                localStorage.setItem(
+                    "reconnectProfile",
+                    JSON.stringify(
+                        currentProfile
+                    )
+                );
+
+
+                if (
+                    socket?.connected
+                ) {
+
+                    socket.emit(
+                        "register-user",
+                        currentProfile._id
+                    );
+
+                }
+
+
+                message.textContent =
+                    "✓ Profile created successfully. You are now part of ReConnect.";
+
+                message.style.color =
+                    "#228b22";
+
+
+                document
+                    .getElementById(
+                        "registerForm"
+                    )
+                    .reset();
+
+
+                await loadMyProfile();
+
+                await loadPendingRequests();
+
+                await loadConnections();
+
+
+                document
+                    .getElementById(
+                        "myProfile"
+                    )
+                    .scrollIntoView({
+                        behavior:
+                            "smooth"
+                    });
+
+
+            } catch (error) {
+
+                message.textContent =
+                    error.message;
+
+                message.style.color =
+                    "#d62828";
+
+            }
+
+        }
+    );
+
+
+/* ========================================
+   LOAD MY PROFILE
+======================================== */
+
+async function loadMyProfile() {
+
+    const container =
+        document.getElementById(
+            "myProfileContent"
+        );
+
+
+    if (
+        !currentProfile?._id
+    ) {
+
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#68657e;
+                margin-top:25px;
+            ">
+                Create your profile to view
+                your saved details.
+            </p>
+        `;
 
         return;
-
     }
 
 
-    profiles.push({
+    try {
 
-        name: name,
-
-        school: school,
-
-        batch: batch,
-
-        village: village,
-
-        phone: phone,
-
-        visibility: visibility
-
-    });
+        const data =
+            await apiRequest(
+                "/api/profile/" +
+                currentProfile._id
+            );
 
 
-    message.textContent =
-
-        "Profile saved in this demo.";
-
-    message.style.color = "#228b22";
+        currentProfile =
+            data.profile;
 
 
-    document.getElementById("registerForm").reset();
+        localStorage.setItem(
+            "reconnectProfile",
+            JSON.stringify(
+                currentProfile
+            )
+        );
 
-});
+
+        container.innerHTML = `
+
+            <div class="my-profile-grid">
+
+
+                <div class="my-profile-item">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentProfile.fullName
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="my-profile-item">
+
+                    <span>
+                        School / College
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentProfile.schoolName
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="my-profile-item">
+
+                    <span>
+                        Batch Year
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentProfile.batchYear
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="my-profile-item">
+
+                    <span>
+                        Village / Hometown
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentProfile.villageName
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="my-profile-item">
+
+                    <span>
+                        Mobile Number
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentProfile.mobileNumber
+                        )}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="edit-profile-btn"
+                onclick="openEditProfile()">
+
+                ✏️ Edit Profile
+
+            </button>
+
+        `;
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#d62828;
+            ">
+                ${escapeHtml(
+                    error.message
+                )}
+            </p>
+        `;
+
+    }
+
+}
+
+
+/* ========================================
+   OPEN EDIT PROFILE
+======================================== */
+
+function openEditProfile() {
+
+    if (
+        !currentProfile
+    ) {
+
+        showToast(
+            "Profile",
+            "Please create your profile first."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "editFullName"
+        )
+        .value =
+        currentProfile.fullName ||
+        "";
+
+
+    document
+        .getElementById(
+            "editSchoolName"
+        )
+        .value =
+        currentProfile.schoolName ||
+        "";
+
+
+    document
+        .getElementById(
+            "editBatchYear"
+        )
+        .value =
+        currentProfile.batchYear ||
+        "";
+
+
+    document
+        .getElementById(
+            "editVillageName"
+        )
+        .value =
+        currentProfile.villageName ||
+        "";
+
+
+    document
+        .getElementById(
+            "editMobileNumber"
+        )
+        .value =
+        currentProfile.mobileNumber ||
+        "";
+
+
+    document
+        .getElementById(
+            "editProfileOverlay"
+        )
+        .style.display =
+        "flex";
+
+}
+
+
+/* ========================================
+   CLOSE EDIT PROFILE
+======================================== */
+
+function closeEditProfile() {
+
+    document
+        .getElementById(
+            "editProfileOverlay"
+        )
+        .style.display =
+        "none";
+
+}
+
+
+/* ========================================
+   SAVE EDITED PROFILE
+======================================== */
+
+document
+    .getElementById(
+        "editProfileForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            if (
+                !currentProfile?._id
+            ) {
+
+                return;
+            }
+
+
+            const name =
+                document
+                    .getElementById(
+                        "editFullName"
+                    )
+                    .value
+                    .trim();
+
+
+            const school =
+                document
+                    .getElementById(
+                        "editSchoolName"
+                    )
+                    .value
+                    .trim();
+
+
+            const batch =
+                document
+                    .getElementById(
+                        "editBatchYear"
+                    )
+                    .value
+                    .trim();
+
+
+            const village =
+                document
+                    .getElementById(
+                        "editVillageName"
+                    )
+                    .value
+                    .trim();
+
+
+            const phone =
+                document
+                    .getElementById(
+                        "editMobileNumber"
+                    )
+                    .value
+                    .trim();
+
+
+            if (
+                !/^[6-9][0-9]{9}$/
+                    .test(phone)
+            ) {
+
+                showToast(
+                    "Invalid Number",
+                    "Enter a valid 10-digit Indian mobile number."
+                );
+
+                return;
+            }
+
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        "/api/profile/" +
+                        currentProfile._id,
+                        {
+                            method:
+                                "PATCH",
+
+                            body:
+                                JSON.stringify({
+
+                                    fullName:
+                                        name,
+
+                                    schoolName:
+                                        school,
+
+                                    batchYear:
+                                        batch,
+
+                                    villageName:
+                                        village,
+
+                                    mobileNumber:
+                                        phone
+
+                                })
+                        }
+                    );
+
+
+                currentProfile =
+                    data.profile;
+
+
+                localStorage.setItem(
+                    "reconnectProfile",
+                    JSON.stringify(
+                        currentProfile
+                    )
+                );
+
+
+                closeEditProfile();
+
+
+                await loadMyProfile();
+
+                await loadConnections();
+
+
+                showToast(
+                    "Profile Updated",
+                    "Your profile details have been updated successfully."
+                );
+
+
+            } catch (error) {
+
+                showToast(
+                    "Update Failed",
+                    error.message
+                );
+
+            }
+
+        }
+    );
 
 
 /* ========================================
    SEARCH FRIENDS
 ======================================== */
 
-function searchFriends() {
+async function searchFriends() {
 
     const village =
-
-        document.getElementById("searchVillage")
-
-        .value.trim().toLowerCase();
+        document
+            .getElementById(
+                "searchVillage"
+            )
+            .value
+            .trim();
 
 
     const school =
-
-        document.getElementById("searchSchool")
-
-        .value.trim().toLowerCase();
+        document
+            .getElementById(
+                "searchSchool"
+            )
+            .value
+            .trim();
 
 
     const batch =
-
-        document.getElementById("searchBatch")
-
-        .value.trim();
-
-
-    const results = profiles.filter(profile => {
-
-        return (
-
-            (!village ||
-
-                profile.village.toLowerCase()
-
-                .includes(village)) &&
-
-
-            (!school ||
-
-                profile.school.toLowerCase()
-
-                .includes(school)) &&
-
-
-            (!batch ||
-
-                profile.batch === batch)
-
-        );
-
-    });
+        document
+            .getElementById(
+                "searchBatch"
+            )
+            .value
+            .trim();
 
 
     const container =
-
-        document.getElementById("results");
-
-
-    container.innerHTML = "";
+        document.getElementById(
+            "results"
+        );
 
 
-    if (results.length === 0) {
+    if (
+        !village &&
+        !school &&
+        !batch
+    ) {
 
-        container.innerHTML =
-
-            "<p style='text-align:center;color:#68657e;'>No matching profiles found in this demo.</p>";
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#68657e;
+            ">
+                Enter at least one search detail.
+            </p>
+        `;
 
         return;
-
     }
 
 
-    results.forEach(profile => {
-
-        const card =
-
-            document.createElement("div");
-
-
-        card.style.padding = "20px";
-
-        card.style.marginTop = "15px";
-
-        card.style.border =
-
-            "1px solid #eadffb";
-
-        card.style.borderRadius = "15px";
+    container.innerHTML = `
+        <p style="
+            text-align:center;
+            color:#68657e;
+        ">
+            Searching real ReConnect profiles...
+        </p>
+    `;
 
 
-        const title =
+    try {
 
-            document.createElement("h3");
-
-        title.style.color = "#201747";
-
-        title.style.marginBottom = "8px";
-
-        title.textContent = profile.name;
+        const params =
+            new URLSearchParams();
 
 
-        const schoolText =
-
-            document.createElement("p");
-
-        schoolText.textContent =
-
-            "School: " + profile.school;
+        if (village)
+            params.set(
+                "village",
+                village
+            );
 
 
-        const batchText =
-
-            document.createElement("p");
-
-        batchText.textContent =
-
-            "Batch: " + profile.batch;
+        if (school)
+            params.set(
+                "school",
+                school
+            );
 
 
-        const villageText =
-
-            document.createElement("p");
-
-        villageText.textContent =
-
-            "Village: " + profile.village;
+        if (batch)
+            params.set(
+                "batch",
+                batch
+            );
 
 
-        const phoneText =
-
-            document.createElement("p");
-
-        phoneText.textContent =
-
-            "Phone: " +
-
-            (profile.visibility === "private"
-
-                ? "Private"
-
-                : "Available after connection");
+        const data =
+            await apiRequest(
+                "/api/friends/search?" +
+                params.toString()
+            );
 
 
-        const requestButton =
-
-            document.createElement("button");
-
-
-        requestButton.className = "find-button";
-
-        requestButton.textContent =
-
-            "Send Connection Request";
+        container.innerHTML =
+            "";
 
 
-        requestButton.addEventListener("click", function() {
+        if (
+            !data.results ||
+            !data.results.length
+        ) {
 
-            sendRequest(profile.name);
+            container.innerHTML = `
+                <p style="
+                    text-align:center;
+                    color:#68657e;
+                ">
+                    No matching profiles found yet.
+                    We’ll notify you in the future
+                    when a match appears.
+                </p>
+            `;
 
-        });
-
-
-        card.appendChild(title);
-
-        card.appendChild(schoolText);
-
-        card.appendChild(batchText);
-
-        card.appendChild(villageText);
-
-        card.appendChild(phoneText);
-
-        card.appendChild(requestButton);
+            return;
+        }
 
 
-        container.appendChild(card);
+        data.results.forEach(
+            profile => {
 
-    });
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.style.padding =
+                    "20px";
+
+                card.style.marginTop =
+                    "15px";
+
+                card.style.border =
+                    "1px solid #eadffb";
+
+                card.style.borderRadius =
+                    "15px";
+
+                card.style.background =
+                    "#fff";
+
+
+                const title =
+                    document.createElement(
+                        "h3"
+                    );
+
+
+                title.style.color =
+                    "#201747";
+
+                title.style.marginBottom =
+                    "8px";
+
+                title.textContent =
+                    profile.fullName;
+
+
+                const match =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                match.innerHTML =
+                    `<strong>${escapeHtml(
+                        profile.matchPercentage
+                    )}% match</strong>`;
+
+                match.style.color =
+                    "#6827cf";
+
+
+                const schoolText =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                schoolText.textContent =
+                    "School: " +
+                    (
+                        profile.schoolName ||
+                        "-"
+                    );
+
+
+                const batchText =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                batchText.textContent =
+                    "Batch: " +
+                    (
+                        profile.batchYear ||
+                        "-"
+                    );
+
+
+                const villageText =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                villageText.textContent =
+                    "Village: " +
+                    (
+                        profile.villageName ||
+                        "-"
+                    );
+
+
+                /* PHONE IS NEVER SHOWN IN SEARCH */
+
+                const phoneText =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                phoneText.textContent =
+                    "Phone: Hidden until connection is accepted.";
+
+                phoneText.style.color =
+                    "#85829a";
+
+
+                const requestButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                requestButton.className =
+                    "find-button";
+
+
+                requestButton.textContent =
+                    "Send Connection Request";
+
+
+                if (
+                    currentProfile?._id &&
+                    String(
+                        currentProfile._id
+                    ) ===
+                    String(
+                        profile._id
+                    )
+                ) {
+
+                    requestButton.textContent =
+                        "This is You";
+
+
+                    requestButton.disabled =
+                        true;
+
+
+                    requestButton.style.background =
+                        "#999";
+
+                }
+
+
+                requestButton.addEventListener(
+                    "click",
+                    async function() {
+
+                        await sendConnectionRequest(
+                            profile._id,
+                            profile.fullName,
+                            requestButton
+                        );
+
+                    }
+                );
+
+
+                card.appendChild(
+                    title
+                );
+
+                card.appendChild(
+                    match
+                );
+
+                card.appendChild(
+                    schoolText
+                );
+
+                card.appendChild(
+                    batchText
+                );
+
+                card.appendChild(
+                    villageText
+                );
+
+                card.appendChild(
+                    phoneText
+                );
+
+                card.appendChild(
+                    requestButton
+                );
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#d62828;
+            ">
+                ${escapeHtml(
+                    error.message
+                )}
+            </p>
+        `;
+
+    }
 
 }
 
 
 /* ========================================
-   CONNECTION REQUEST
+   SEND CONNECTION REQUEST
 ======================================== */
 
-function sendRequest(name) {
+async function sendConnectionRequest(
+    receiverId,
+    receiverName,
+    button
+) {
 
-    alert(
+    if (
+        !currentProfile?._id
+    ) {
 
-        "Connection request created for " +
+        alert(
+            "Please create your ReConnect profile first."
+        );
 
-        name +
 
-        ". This is a front-end demo."
+        document
+            .getElementById(
+                "register"
+            )
+            .scrollIntoView({
+                behavior:
+                    "smooth"
+            });
 
+
+        return;
+    }
+
+
+    if (
+        String(
+            currentProfile._id
+        ) ===
+        String(receiverId)
+    ) {
+
+        alert(
+            "You cannot send a connection request to yourself."
+        );
+
+        return;
+    }
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Sending...";
+
+
+    try {
+
+        await apiRequest(
+            "/api/friends/request",
+            {
+                method:
+                    "POST",
+
+                body:
+                    JSON.stringify({
+
+                        senderId:
+                            currentProfile._id,
+
+                        receiverId:
+                            receiverId
+
+                    })
+            }
+        );
+
+
+        button.textContent =
+            "✓ Request Sent";
+
+
+        button.style.background =
+            "#228b22";
+
+
+    } catch (error) {
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "Send Connection Request";
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   SHOW CONNECTION REQUEST
+======================================== */
+
+function showConnectionRequest(
+    notification
+) {
+
+    currentRequest =
+        notification;
+
+
+    document
+        .getElementById(
+            "requestTitle"
+        )
+        .textContent =
+        notification.title ||
+        "New Connection Request";
+
+
+    document
+        .getElementById(
+            "requestMessage"
+        )
+        .textContent =
+        notification.message ||
+        "Someone wants to reconnect with you.";
+
+
+    const profileBox =
+        document
+            .getElementById(
+                "requestProfile"
+            );
+
+
+    profileBox.innerHTML = `
+        <p>
+            <strong>
+                Connection request received.
+            </strong>
+        </p>
+
+        <p>
+            You can view the profile
+            before deciding.
+        </p>
+    `;
+
+
+    document
+        .getElementById(
+            "requestOverlay"
+        )
+        .style.display =
+        "flex";
+
+
+    loadRequestProfile(
+        notification.connectionId
     );
 
 }
 
+
+/* ========================================
+   LOAD REQUEST PROFILE
+======================================== */
+
+async function loadRequestProfile(
+    connectionId
+) {
+
+    if (!connectionId)
+        return;
+
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/friends/request/" +
+                connectionId +
+                "/details"
+            );
+
+
+        if (
+            data &&
+            data.connection
+        ) {
+
+            const connection =
+                data.connection;
+
+
+            const profile =
+                connection.sender;
+
+
+            currentRequest.profile =
+                profile;
+
+
+            renderRequestProfile(
+                profile
+            );
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Profile preview unavailable:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   RENDER REQUEST PROFILE
+======================================== */
+
+function renderRequestProfile(
+    profile
+) {
+
+    const profileBox =
+        document
+            .getElementById(
+                "requestProfile"
+            );
+
+
+    profileBox.innerHTML = `
+
+        <p>
+
+            <strong>
+                Name:
+            </strong>
+
+            ${escapeHtml(
+                profile.fullName
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                School:
+            </strong>
+
+            ${escapeHtml(
+                profile.schoolName
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Batch:
+            </strong>
+
+            ${escapeHtml(
+                profile.batchYear
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Village:
+            </strong>
+
+            ${escapeHtml(
+                profile.villageName
+            )}
+
+        </p>
+
+    `;
+
+}
+
+
+/* ========================================
+   VIEW REQUEST PROFILE
+======================================== */
+
+function viewRequestProfile() {
+
+    if (
+        !currentRequest?.profile
+    ) {
+
+        showToast(
+            "Profile",
+            "Profile details are still loading."
+        );
+
+        return;
+    }
+
+
+    const profile =
+        currentRequest.profile;
+
+
+    document
+        .getElementById(
+            "profileDetails"
+        )
+        .innerHTML = `
+
+        <p>
+
+            <strong>
+                Name:
+            </strong>
+
+            ${escapeHtml(
+                profile.fullName
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                School:
+            </strong>
+
+            ${escapeHtml(
+                profile.schoolName
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Batch:
+            </strong>
+
+            ${escapeHtml(
+                profile.batchYear
+            )}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Village:
+            </strong>
+
+            ${escapeHtml(
+                profile.villageName
+            )}
+
+        </p>
+
+    `;
+
+
+    document
+        .getElementById(
+            "profileOverlay"
+        )
+        .style.display =
+        "flex";
+
+}
+
+
+/* ========================================
+   ACCEPT
+======================================== */
+
+async function acceptCurrentRequest() {
+
+    if (
+        !currentRequest?.connectionId
+    ) {
+
+        showToast(
+            "Error",
+            "Connection request information is missing."
+        );
+
+        return;
+    }
+
+
+    if (
+        !currentProfile?._id
+    ) {
+
+        showToast(
+            "Error",
+            "Your profile information is missing."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        await apiRequest(
+            "/api/friends/request/" +
+            currentRequest.connectionId,
+            {
+                method:
+                    "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        status:
+                            "accepted",
+
+                        receiverId:
+                            currentProfile._id
+
+                    })
+            }
+        );
+
+
+        closeRequestPopup();
+
+
+        showToast(
+            "Connection Accepted",
+            "You are now connected. Phone numbers are now visible to both accepted connections."
+        );
+
+
+        await loadConnections();
+
+
+    } catch (error) {
+
+        showToast(
+            "Could not accept",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   DECLINE
+======================================== */
+
+async function declineCurrentRequest() {
+
+    if (
+        !currentRequest?.connectionId
+    ) {
+
+        showToast(
+            "Error",
+            "Connection request information is missing."
+        );
+
+        return;
+    }
+
+
+    if (
+        !currentProfile?._id
+    ) {
+
+        return;
+    }
+
+
+    try {
+
+        await apiRequest(
+            "/api/friends/request/" +
+            currentRequest.connectionId,
+            {
+                method:
+                    "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        status:
+                            "declined",
+
+                        receiverId:
+                            currentProfile._id
+
+                    })
+            }
+        );
+
+
+        closeRequestPopup();
+
+
+        showToast(
+            "Request Declined",
+            "The connection request was declined."
+        );
+
+
+    } catch (error) {
+
+        showToast(
+            "Could not decline",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   CLOSE REQUEST POPUP
+======================================== */
+
+function closeRequestPopup() {
+
+    document
+        .getElementById(
+            "requestOverlay"
+        )
+        .style.display =
+        "none";
+
+
+    currentRequest =
+        null;
+
+}
+
+
+/* ========================================
+   PROFILE MODAL
+======================================== */
+
+function closeProfileModal() {
+
+    document
+        .getElementById(
+            "profileOverlay"
+        )
+        .style.display =
+        "none";
+
+}
+
+
+/* ========================================
+   LOAD PENDING REQUESTS
+======================================== */
+
+async function loadPendingRequests() {
+
+    if (
+        !currentProfile?._id
+    )
+        return;
+
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/friends/" +
+                currentProfile._id +
+                "/requests"
+            );
+
+
+        if (
+            data.requests &&
+            data.requests.length
+        ) {
+
+            const request =
+                data.requests[0];
+
+
+            currentRequest = {
+
+                connectionId:
+                    request._id,
+
+                type:
+                    "connection_request",
+
+                title:
+                    "New Connection Request",
+
+                message:
+                    `${request.sender.fullName} wants to reconnect with you.`,
+
+                profile:
+                    request.sender
+
+            };
+
+
+            renderRequestProfile(
+                request.sender
+            );
+
+
+            document
+                .getElementById(
+                    "requestTitle"
+                )
+                .textContent =
+                "New Connection Request";
+
+
+            document
+                .getElementById(
+                    "requestMessage"
+                )
+                .textContent =
+                `${request.sender.fullName} wants to reconnect with you.`;
+
+
+            document
+                .getElementById(
+                    "requestOverlay"
+                )
+                .style.display =
+                "flex";
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Could not load pending requests:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   LOAD CONNECTIONS
+======================================== */
+
+async function loadConnections() {
+
+    const container =
+        document.getElementById(
+            "connectionsList"
+        );
+
+
+    if (
+        !currentProfile?._id
+    ) {
+
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#68657e;
+            ">
+                Create your profile to see
+                your connections.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/friends/" +
+                currentProfile._id +
+                "/connections"
+            );
+
+
+        container.innerHTML =
+            "";
+
+
+        if (
+            !data.connections ||
+            !data.connections.length
+        ) {
+
+            container.innerHTML = `
+                <p style="
+                    text-align:center;
+                    color:#68657e;
+                ">
+                    You don't have any
+                    accepted connections yet.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        data.connections.forEach(
+            connection => {
+
+                const profile =
+                    connection.profile;
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "connection-card";
+
+
+                let phoneHTML =
+                    "";
+
+
+                if (
+                    profile.mobileNumber
+                ) {
+
+                    const safePhone =
+                        escapeHtml(
+                            profile.mobileNumber
+                        );
+
+
+                    phoneHTML = `
+
+                        <div class="phone-number">
+
+                            <span>
+                                📱 ${safePhone}
+                            </span>
+
+                            <a
+                                href="tel:${safePhone}"
+                                class="call-btn">
+
+                                📞 Call
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+                } else {
+
+                    phoneHTML = `
+
+                        <div class="phone-number">
+
+                            📱 Mobile number unavailable
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                card.innerHTML = `
+
+                    <h3>
+
+                        ${escapeHtml(
+                            profile.fullName
+                        )}
+
+                    </h3>
+
+
+                    <p>
+
+                        <strong>
+                            School:
+                        </strong>
+
+                        ${escapeHtml(
+                            profile.schoolName
+                        )}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Batch:
+                        </strong>
+
+                        ${escapeHtml(
+                            profile.batchYear
+                        )}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Village:
+                        </strong>
+
+                        ${escapeHtml(
+                            profile.villageName
+                        )}
+
+                    </p>
+
+
+                    ${phoneHTML}
+
+
+                    <span class="connected-label">
+
+                        ✓ Connected
+
+                    </span>
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <p style="
+                text-align:center;
+                color:#d62828;
+            ">
+                ${escapeHtml(
+                    error.message
+                )}
+            </p>
+        `;
+
+    }
+
+}
+
+
+/* ========================================
+   INITIALIZE
+======================================== */
+
+connectRealtime();
+
+
+/* ========================================
+   LOAD EXISTING DATA
+======================================== */
+
+setTimeout(
+    async () => {
+
+        if (
+            currentProfile?._id
+        ) {
+
+            await loadMyProfile();
+
+            await loadPendingRequests();
+
+            await loadConnections();
+
+        }
+
+    },
+    500
+);
+
+
+/* ========================================
+   CLOSE MODALS WHEN CLICKING OUTSIDE
+======================================== */
+
+document
+    .getElementById(
+        "editProfileOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeEditProfile();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "profileOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeProfileModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "requestOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeRequestPopup();
+
+            }
+
+        }
+    );
+
 </script>
 
+
 </body>
+
 </html>
