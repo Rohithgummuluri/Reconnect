@@ -1,7 +1,13 @@
+
 const express = require("express");
 const Profile = require("../models/Profile");
 
 const router = express.Router();
+
+// Helper: convert optional values into trimmed strings
+function cleanOptional(value) {
+    return typeof value === "string" ? value.trim() : "";
+}
 
 // CREATE PROFILE
 router.post("/", async (req, res) => {
@@ -11,9 +17,16 @@ router.post("/", async (req, res) => {
             schoolName,
             batchYear,
             villageName,
-            mobileNumber
+            mobileNumber,
+            phoneVisibility,
+            educationCategory,
+            educationLevel,
+            educationYear,
+            districtName,
+            memoryBox
         } = req.body;
 
+        // Existing required fields
         if (
             !fullName ||
             !schoolName ||
@@ -26,12 +39,33 @@ router.post("/", async (req, res) => {
             });
         }
 
+        // Validate Memory Box length
+        if (
+            typeof memoryBox === "string" &&
+            memoryBox.length > 1500
+        ) {
+            return res.status(400).json({
+                message: "Memory Box cannot exceed 1500 characters."
+            });
+        }
+
         const profile = await Profile.create({
             fullName: fullName.trim(),
             schoolName: schoolName.trim(),
             batchYear: String(batchYear).trim(),
             villageName: villageName.trim(),
-            mobileNumber: mobileNumber.trim()
+            mobileNumber: mobileNumber.trim(),
+
+            phoneVisibility:
+                phoneVisibility === "connections"
+                    ? "connections"
+                    : "private",
+
+            educationCategory: cleanOptional(educationCategory),
+            educationLevel: cleanOptional(educationLevel),
+            educationYear: cleanOptional(educationYear),
+            districtName: cleanOptional(districtName),
+            memoryBox: cleanOptional(memoryBox)
         });
 
         res.status(201).json({
@@ -81,9 +115,16 @@ router.patch("/:profileId", async (req, res) => {
             schoolName,
             batchYear,
             villageName,
-            mobileNumber
+            mobileNumber,
+            phoneVisibility,
+            educationCategory,
+            educationLevel,
+            educationYear,
+            districtName,
+            memoryBox
         } = req.body;
 
+        // Existing required fields
         if (
             !fullName ||
             !schoolName ||
@@ -96,15 +137,41 @@ router.patch("/:profileId", async (req, res) => {
             });
         }
 
+        // Validate Memory Box length
+        if (
+            typeof memoryBox === "string" &&
+            memoryBox.length > 1500
+        ) {
+            return res.status(400).json({
+                message: "Memory Box cannot exceed 1500 characters."
+            });
+        }
+
+        const updateData = {
+            fullName: fullName.trim(),
+            schoolName: schoolName.trim(),
+            batchYear: String(batchYear).trim(),
+            villageName: villageName.trim(),
+            mobileNumber: mobileNumber.trim(),
+
+            educationCategory: cleanOptional(educationCategory),
+            educationLevel: cleanOptional(educationLevel),
+            educationYear: cleanOptional(educationYear),
+            districtName: cleanOptional(districtName),
+            memoryBox: cleanOptional(memoryBox)
+        };
+
+        // Update phone visibility only if a valid value is provided
+        if (
+            phoneVisibility === "private" ||
+            phoneVisibility === "connections"
+        ) {
+            updateData.phoneVisibility = phoneVisibility;
+        }
+
         const updatedProfile = await Profile.findByIdAndUpdate(
             req.params.profileId,
-            {
-                fullName: fullName.trim(),
-                schoolName: schoolName.trim(),
-                batchYear: String(batchYear).trim(),
-                villageName: villageName.trim(),
-                mobileNumber: mobileNumber.trim()
-            },
+            updateData,
             {
                 new: true,
                 runValidators: true
@@ -130,6 +197,5 @@ router.patch("/:profileId", async (req, res) => {
         });
     }
 });
-
 
 module.exports = router;
