@@ -458,32 +458,41 @@ async function apiRequest(path, options = {}) {
   Edit IDs: editFullName, editSchoolName, etc.
 */
 function getProfileFormData(isEdit = false) {
-    const getValue = fieldName => {
-        const elementId = isEdit
-            ? "edit" + fieldName
-            : fieldName.charAt(0).toLowerCase() + fieldName.slice(1);
+    const fieldIds = {
+        fullName: isEdit ? "editFullName" : "fullName",
+        schoolName: isEdit ? "editSchoolName" : "schoolName",
+        batchYear: isEdit ? "editBatchYear" : "batchYear",
+        villageName: isEdit ? "editVillageName" : "villageName",
+        mobileNumber: isEdit ? "editMobileNumber" : "mobileNumber",
+        educationCategory: isEdit
+            ? "editEducationCategory"
+            : "educationCategory",
+        educationLevel: isEdit
+            ? "editEducationLevel"
+            : "educationLevel",
+        educationYear: isEdit
+            ? "editEducationYear"
+            : "educationYear",
+        districtName: isEdit ? "editDistrictName" : "districtName",
+        memoryBox: isEdit ? "editMemoryBox" : "memoryBox"
+    };
 
-        const element = $(elementId);
+    const data = {};
+
+    for (const [fieldName, elementId] of Object.entries(fieldIds)) {
+        const element = document.getElementById(elementId);
 
         if (!element) {
-            throw new Error("Form field not found: " + elementId);
+            console.error("Missing form field ID:", elementId);
+            throw new Error(
+                `Cannot find the form field "${elementId}". Check its HTML id.`
+            );
         }
 
-        return element.value.trim();
-    };
+        data[fieldName] = element.value.trim();
+    }
 
-    return {
-        fullName: getValue("FullName"),
-        schoolName: getValue("SchoolName"),
-        batchYear: getValue("BatchYear"),
-        villageName: getValue("VillageName"),
-        mobileNumber: getValue("MobileNumber"),
-        educationCategory: getValue("EducationCategory"),
-        educationLevel: getValue("EducationLevel"),
-        educationYear: getValue("EducationYear"),
-        districtName: getValue("DistrictName"),
-        memoryBox: getValue("MemoryBox")
-    };
+    return data;
 }
 
 function validateProfile(data) {
