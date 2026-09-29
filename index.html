@@ -54,6 +54,7 @@ section{padding:65px 7%}
 }
 .primary-btn{background:var(--primary);color:white}
 .primary-btn:hover{background:var(--dark)}
+.primary-btn:disabled{background:#999;cursor:not-allowed}
 .secondary-btn{background:#f1e8ff;color:var(--primary)}
 .danger-btn{background:#f5eeee;color:#c62828}
 .center-btn{display:block;margin:25px auto 0}
@@ -66,7 +67,7 @@ section{padding:65px 7%}
 .result-card{padding:20px;margin-top:15px;border:1px solid var(--border);border-radius:15px}
 .result-card h3{color:var(--dark);margin-bottom:10px}
 .result-card p,.connection-card p{color:var(--text);margin:7px 0;overflow-wrap:anywhere}
-.connection-card{margin-top:15px}
+.connection-card{margin:15px auto 0;max-width:1100px}
 .connection-card h3{margin-bottom:10px;color:var(--dark)}
 .connected-label{display:inline-block;margin-top:10px;padding:7px 12px;background:#edf9f1;color:#228b22;border-radius:20px;font-size:13px;font-weight:bold}
 .phone-number{margin-top:12px;padding:12px;background:#f0faf3;border-radius:10px;color:#176b2c;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
@@ -318,23 +319,52 @@ footer span{color:#cdb3ff}
         <p>Update your saved details.</p>
         <form id="editProfileForm">
             <div class="form-grid">
-                <div class="field"><label for="editFullName">Full Name *</label><input id="editFullName" required></div>
+                <div class="field">
+                    <label for="editFullName">Full Name *</label>
+                    <input id="editFullName" required>
+                </div>
                 <div class="field">
                     <label for="editEducationCategory">Education Category *</label>
                     <select id="editEducationCategory" required>
                         <option value="">Select category</option>
-                        <option>Schooling</option><option>Intermediate</option><option>Diploma</option>
-                        <option>B.Tech</option><option>Degree</option><option>M.Tech</option>
-                        <option>Postgraduate</option><option>Other</option>
+                        <option>Schooling</option>
+                        <option>Intermediate</option>
+                        <option>Diploma</option>
+                        <option>B.Tech</option>
+                        <option>Degree</option>
+                        <option>M.Tech</option>
+                        <option>Postgraduate</option>
+                        <option>Other</option>
                     </select>
                 </div>
-                <div class="field"><label for="editEducationLevel">Class / Course / Group</label><input id="editEducationLevel" placeholder="Example: 10th, MPC, AIML"></div>
-                <div class="field"><label for="editEducationYear">Year / Batch</label><input id="editEducationYear" placeholder="Example: 2022 or 3rd Year"></div>
-                <div class="field"><label for="editSchoolName">School / College *</label><input id="editSchoolName" required></div>
-                <div class="field"><label for="editBatchYear">Batch Year *</label><input id="editBatchYear" type="number" required></div>
-                <div class="field"><label for="editVillageName">Village / Hometown *</label><input id="editVillageName" required></div>
-                <div class="field"><label for="editDistrictName">District</label><input id="editDistrictName"></div>
-                <div class="field"><label for="editMobileNumber">Mobile Number *</label><input id="editMobileNumber" type="tel" maxlength="10" required></div>
+                <div class="field">
+                    <label for="editEducationLevel">Class / Course / Group</label>
+                    <input id="editEducationLevel" placeholder="Example: 10th, MPC, AIML">
+                </div>
+                <div class="field">
+                    <label for="editEducationYear">Year / Batch</label>
+                    <input id="editEducationYear" placeholder="Example: 2022 or 3rd Year">
+                </div>
+                <div class="field">
+                    <label for="editSchoolName">School / College *</label>
+                    <input id="editSchoolName" required>
+                </div>
+                <div class="field">
+                    <label for="editBatchYear">Batch Year *</label>
+                    <input id="editBatchYear" type="number" required>
+                </div>
+                <div class="field">
+                    <label for="editVillageName">Village / Hometown *</label>
+                    <input id="editVillageName" required>
+                </div>
+                <div class="field">
+                    <label for="editDistrictName">District</label>
+                    <input id="editDistrictName">
+                </div>
+                <div class="field">
+                    <label for="editMobileNumber">Mobile Number *</label>
+                    <input id="editMobileNumber" type="tel" maxlength="10" required>
+                </div>
                 <div class="field full-width">
                     <label for="editMemoryBox">Memory Box</label>
                     <textarea id="editMemoryBox" maxlength="1500"></textarea>
@@ -370,6 +400,7 @@ footer span{color:#cdb3ff}
 "use strict";
 
 const API_BASE = "https://reconnect-backend-q4r0.onrender.com";
+
 let currentProfile = JSON.parse(localStorage.getItem("reconnectProfile") || "null");
 let socket = null;
 let currentRequest = null;
@@ -378,7 +409,11 @@ const $ = id => document.getElementById(id);
 
 function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
     })[char]);
 }
 
@@ -407,37 +442,69 @@ async function apiRequest(path, options = {}) {
             ...(options.headers || {})
         }
     });
+
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.message || "Request failed.");
+
+    if (!response.ok) {
+        throw new Error(data.message || "Request failed.");
+    }
+
     return data;
 }
 
-function getProfileFormData(prefix = "") {
-    const value = id => $(prefix + id).value.trim();
+/*
+  FIXED FORM FIELD LOOKUP:
+  Registration IDs: fullName, schoolName, etc.
+  Edit IDs: editFullName, editSchoolName, etc.
+*/
+function getProfileFormData(isEdit = false) {
+    const getValue = fieldName => {
+        const elementId = isEdit
+            ? "edit" + fieldName
+            : fieldName.charAt(0).toLowerCase() + fieldName.slice(1);
+
+        const element = $(elementId);
+
+        if (!element) {
+            throw new Error("Form field not found: " + elementId);
+        }
+
+        return element.value.trim();
+    };
+
     return {
-        fullName:value("FullName"),
-        schoolName:value("SchoolName"),
-        batchYear:value("BatchYear"),
-        villageName:value("VillageName"),
-        mobileNumber:value("MobileNumber"),
-        educationCategory:value("EducationCategory"),
-        educationLevel:value("EducationLevel"),
-        educationYear:value("EducationYear"),
-        districtName:value("DistrictName"),
-        memoryBox:value("MemoryBox")
+        fullName: getValue("FullName"),
+        schoolName: getValue("SchoolName"),
+        batchYear: getValue("BatchYear"),
+        villageName: getValue("VillageName"),
+        mobileNumber: getValue("MobileNumber"),
+        educationCategory: getValue("EducationCategory"),
+        educationLevel: getValue("EducationLevel"),
+        educationYear: getValue("EducationYear"),
+        districtName: getValue("DistrictName"),
+        memoryBox: getValue("MemoryBox")
     };
 }
 
 function validateProfile(data) {
-    if (!data.fullName || !data.schoolName || !data.batchYear || !data.villageName || !data.mobileNumber) {
+    if (
+        !data.fullName ||
+        !data.schoolName ||
+        !data.batchYear ||
+        !data.villageName ||
+        !data.mobileNumber
+    ) {
         throw new Error("Please complete all required fields.");
     }
+
     if (!/^[6-9][0-9]{9}$/.test(data.mobileNumber)) {
         throw new Error("Enter a valid 10-digit Indian mobile number.");
     }
+
     if (!data.educationCategory) {
         throw new Error("Please select your education category.");
     }
+
     if (data.memoryBox.length > 1500) {
         throw new Error("Memory Box cannot exceed 1500 characters.");
     }
@@ -451,34 +518,44 @@ function storeProfile(profile) {
 $("memoryBox").addEventListener("input", () => {
     $("memoryCount").textContent = $("memoryBox").value.length;
 });
+
 $("editMemoryBox").addEventListener("input", () => {
     $("editMemoryCount").textContent = $("editMemoryBox").value.length;
 });
 
+/* CREATE PROFILE */
 $("registerForm").addEventListener("submit", async event => {
     event.preventDefault();
+
     const message = $("registerMessage");
     message.style.color = "var(--text)";
     message.textContent = "Saving your profile...";
 
     try {
-        const profileData = getProfileFormData();
+        const profileData = getProfileFormData(false);
         validateProfile(profileData);
+
         const result = await apiRequest("/api/profile", {
             method:"POST",
             body:JSON.stringify(profileData)
         });
 
         storeProfile(result.profile);
+
         message.style.color = "#228b22";
         message.textContent = "Profile created successfully!";
+
         $("registerForm").reset();
         $("memoryCount").textContent = "0";
 
-        if (socket?.connected) socket.emit("register-user", currentProfile._id);
+        if (socket?.connected) {
+            socket.emit("register-user", currentProfile._id);
+        }
+
         await loadMyProfile();
         await loadConnections();
         await loadPendingRequests();
+
         $("myProfile").scrollIntoView({behavior:"smooth"});
     } catch (error) {
         message.style.color = "#d62828";
@@ -486,6 +563,7 @@ $("registerForm").addEventListener("submit", async event => {
     }
 });
 
+/* DISPLAY MY PROFILE */
 async function loadMyProfile() {
     if (!currentProfile?._id) {
         $("myProfileContent").textContent = "Create your profile to view your saved details.";
@@ -493,7 +571,10 @@ async function loadMyProfile() {
     }
 
     try {
-        const result = await apiRequest("/api/profile/" + encodeURIComponent(currentProfile._id));
+        const result = await apiRequest(
+            "/api/profile/" + encodeURIComponent(currentProfile._id)
+        );
+
         storeProfile(result.profile);
         const p = currentProfile;
 
@@ -526,21 +607,31 @@ async function loadMyProfile() {
     }
 }
 
+/* OPEN EDIT PROFILE */
 function openEditProfile() {
-    if (!currentProfile) return showToast("Profile","Create your profile first.");
-    const p = currentProfile;
-    const set = (id,value) => $(id).value = value || "";
+    if (!currentProfile) {
+        showToast("Profile","Create your profile first.");
+        return;
+    }
 
-    set("editFullName",p.fullName);
-    set("editSchoolName",p.schoolName);
-    set("editBatchYear",p.batchYear);
-    set("editVillageName",p.villageName);
-    set("editMobileNumber",p.mobileNumber);
-    set("editEducationCategory",p.educationCategory);
-    set("editEducationLevel",p.educationLevel);
-    set("editEducationYear",p.educationYear);
-    set("editDistrictName",p.districtName);
-    set("editMemoryBox",p.memoryBox);
+    const p = currentProfile;
+
+    const setValue = (id,value) => {
+        const element = $(id);
+        if (element) element.value = value || "";
+    };
+
+    setValue("editFullName",p.fullName);
+    setValue("editSchoolName",p.schoolName);
+    setValue("editBatchYear",p.batchYear);
+    setValue("editVillageName",p.villageName);
+    setValue("editMobileNumber",p.mobileNumber);
+    setValue("editEducationCategory",p.educationCategory);
+    setValue("editEducationLevel",p.educationLevel);
+    setValue("editEducationYear",p.educationYear);
+    setValue("editDistrictName",p.districtName);
+    setValue("editMemoryBox",p.memoryBox);
+
     $("editMemoryCount").textContent = (p.memoryBox || "").length;
     $("editProfileOverlay").style.display = "flex";
 }
@@ -549,27 +640,40 @@ function closeEditProfile() {
     $("editProfileOverlay").style.display = "none";
 }
 
+/* UPDATE PROFILE */
 $("editProfileForm").addEventListener("submit", async event => {
     event.preventDefault();
-    if (!currentProfile?._id) return;
+
+    if (!currentProfile?._id) {
+        showToast("Profile Required","Create your profile first.");
+        return;
+    }
 
     try {
-        const data = getProfileFormData("edit");
+        const data = getProfileFormData(true);
         validateProfile(data);
-        const result = await apiRequest("/api/profile/" + encodeURIComponent(currentProfile._id), {
-            method:"PATCH",
-            body:JSON.stringify(data)
-        });
+
+        const result = await apiRequest(
+            "/api/profile/" + encodeURIComponent(currentProfile._id),
+            {
+                method:"PATCH",
+                body:JSON.stringify(data)
+            }
+        );
+
         storeProfile(result.profile);
         closeEditProfile();
+
         await loadMyProfile();
         await loadConnections();
+
         showToast("Profile Updated","Your profile was updated.");
     } catch (error) {
         showToast("Update Failed",error.message);
     }
 });
 
+/* SEARCH FRIENDS */
 async function searchFriends() {
     const village = $("searchVillage").value.trim();
     const school = $("searchSchool").value.trim();
@@ -584,11 +688,15 @@ async function searchFriends() {
 
     try {
         const params = new URLSearchParams();
+
         if (village) params.set("village",village);
         if (school) params.set("school",school);
         if (batch) params.set("batch",batch);
 
-        const result = await apiRequest("/api/friends/search?" + params.toString());
+        const result = await apiRequest(
+            "/api/friends/search?" + params.toString()
+        );
+
         $("results").innerHTML = "";
 
         if (!result.results?.length) {
@@ -600,7 +708,9 @@ async function searchFriends() {
             const card = document.createElement("div");
             card.className = "result-card";
 
-            const isMe = currentProfile?._id && String(currentProfile._id) === String(profile._id);
+            const isMe = currentProfile?._id &&
+                String(currentProfile._id) === String(profile._id);
+
             card.innerHTML = `
                 <h3>${escapeHtml(profile.fullName)}</h3>
                 <p><strong>Match:</strong> ${escapeHtml(profile.matchPercentage ?? "-")}%</p>
@@ -609,15 +719,21 @@ async function searchFriends() {
                 <p><strong>Batch:</strong> ${escapeHtml(profile.batchYear || "-")}</p>
                 <p><strong>Village:</strong> ${escapeHtml(profile.villageName || "-")}</p>
                 <p>Phone: Hidden until connection is accepted.</p>
-                <button class="primary-btn" ${isMe ? "disabled" : ""}>${isMe ? "This is You" : "Send Connection Request"}</button>
+                <button class="primary-btn" ${isMe ? "disabled" : ""}>
+                    ${isMe ? "This is You" : "Send Connection Request"}
+                </button>
             `;
 
             const button = card.querySelector("button");
+
             if (isMe) {
                 button.style.background = "#999";
             } else {
-                button.addEventListener("click", () => sendConnectionRequest(profile._id,button));
+                button.addEventListener("click", () =>
+                    sendConnectionRequest(profile._id,button)
+                );
             }
+
             $("results").appendChild(card);
         });
     } catch (error) {
@@ -625,6 +741,7 @@ async function searchFriends() {
     }
 }
 
+/* SEND CONNECTION REQUEST */
 async function sendConnectionRequest(receiverId,button) {
     if (!currentProfile?._id) {
         showToast("Profile Required","Create your profile before sending a request.");
@@ -634,11 +751,16 @@ async function sendConnectionRequest(receiverId,button) {
 
     button.disabled = true;
     button.textContent = "Sending...";
+
     try {
         await apiRequest("/api/friends/request", {
             method:"POST",
-            body:JSON.stringify({senderId:currentProfile._id,receiverId})
+            body:JSON.stringify({
+                senderId:currentProfile._id,
+                receiverId
+            })
         });
+
         button.textContent = "✓ Request Sent";
         showToast("Request Sent","Your connection request was sent.");
     } catch (error) {
@@ -648,6 +770,7 @@ async function sendConnectionRequest(receiverId,button) {
     }
 }
 
+/* LOAD CONNECTIONS */
 async function loadConnections() {
     if (!currentProfile?._id) {
         $("connectionsList").textContent = "Create your profile to see your connections.";
@@ -655,7 +778,10 @@ async function loadConnections() {
     }
 
     try {
-        const result = await apiRequest("/api/friends/" + encodeURIComponent(currentProfile._id) + "/connections");
+        const result = await apiRequest(
+            "/api/friends/" + encodeURIComponent(currentProfile._id) + "/connections"
+        );
+
         $("connectionsList").innerHTML = "";
 
         if (!result.connections?.length) {
@@ -667,6 +793,7 @@ async function loadConnections() {
             const p = connection.profile;
             const card = document.createElement("div");
             card.className = "connection-card";
+
             const phone = p.mobileNumber || "";
 
             card.innerHTML = `
@@ -681,6 +808,7 @@ async function loadConnections() {
                 </div>
                 <span class="connected-label">✓ Connected</span>
             `;
+
             $("connectionsList").appendChild(card);
         });
     } catch (error) {
@@ -688,6 +816,7 @@ async function loadConnections() {
     }
 }
 
+/* REQUEST DETAILS */
 function renderRequestProfile(profile) {
     $("requestProfile").innerHTML = `
         <p><strong>Name:</strong> ${escapeHtml(profile.fullName)}</p>
@@ -699,16 +828,23 @@ function renderRequestProfile(profile) {
 
 function showConnectionRequest(notification) {
     currentRequest = notification;
+
     $("requestTitle").textContent = notification.title || "New Connection Request";
     $("requestMessage").textContent = notification.message || "Someone wants to reconnect with you.";
     $("requestProfile").textContent = "Connection request received. You can accept or decline.";
     $("requestOverlay").style.display = "flex";
-    if (notification.connectionId) loadRequestDetails(notification.connectionId);
+
+    if (notification.connectionId) {
+        loadRequestDetails(notification.connectionId);
+    }
 }
 
 async function loadRequestDetails(connectionId) {
     try {
-        const result = await apiRequest("/api/friends/request/" + encodeURIComponent(connectionId) + "/details");
+        const result = await apiRequest(
+            "/api/friends/request/" + encodeURIComponent(connectionId) + "/details"
+        );
+
         if (result.connection?.sender) {
             currentRequest.profile = result.connection.sender;
             renderRequestProfile(result.connection.sender);
@@ -720,17 +856,25 @@ async function loadRequestDetails(connectionId) {
 
 async function loadPendingRequests() {
     if (!currentProfile?._id) return;
+
     try {
-        const result = await apiRequest("/api/friends/" + encodeURIComponent(currentProfile._id) + "/requests");
+        const result = await apiRequest(
+            "/api/friends/" + encodeURIComponent(currentProfile._id) + "/requests"
+        );
+
         if (!result.requests?.length) return;
 
         const request = result.requests[0];
+
         currentRequest = {
             connectionId:request._id,
             profile:request.sender
         };
+
         $("requestTitle").textContent = "New Connection Request";
-        $("requestMessage").textContent = `${request.sender.fullName} wants to reconnect with you.`;
+        $("requestMessage").textContent =
+            `${request.sender.fullName} wants to reconnect with you.`;
+
         renderRequestProfile(request.sender);
         $("requestOverlay").style.display = "flex";
     } catch (error) {
@@ -738,31 +882,50 @@ async function loadPendingRequests() {
     }
 }
 
+/* ACCEPT REQUEST */
 async function acceptCurrentRequest() {
     if (!currentRequest?.connectionId || !currentProfile?._id) {
         showToast("Error","Request information is missing.");
         return;
     }
+
     try {
-        await apiRequest("/api/friends/request/" + encodeURIComponent(currentRequest.connectionId), {
-            method:"PATCH",
-            body:JSON.stringify({status:"accepted",receiverId:currentProfile._id})
-        });
+        await apiRequest(
+            "/api/friends/request/" + encodeURIComponent(currentRequest.connectionId),
+            {
+                method:"PATCH",
+                body:JSON.stringify({
+                    status:"accepted",
+                    receiverId:currentProfile._id
+                })
+            }
+        );
+
         closeRequestPopup();
         await loadConnections();
+
         showToast("Connection Accepted","You are now connected.");
     } catch (error) {
         showToast("Could Not Accept",error.message);
     }
 }
 
+/* DECLINE REQUEST */
 async function declineCurrentRequest() {
     if (!currentRequest?.connectionId || !currentProfile?._id) return;
+
     try {
-        await apiRequest("/api/friends/request/" + encodeURIComponent(currentRequest.connectionId), {
-            method:"PATCH",
-            body:JSON.stringify({status:"declined",receiverId:currentProfile._id})
-        });
+        await apiRequest(
+            "/api/friends/request/" + encodeURIComponent(currentRequest.connectionId),
+            {
+                method:"PATCH",
+                body:JSON.stringify({
+                    status:"declined",
+                    receiverId:currentProfile._id
+                })
+            }
+        );
+
         closeRequestPopup();
         showToast("Request Declined","The request was declined.");
     } catch (error) {
@@ -775,16 +938,20 @@ function closeRequestPopup() {
     currentRequest = null;
 }
 
+/* REAL-TIME CONNECTION */
 function connectRealtime() {
     if (typeof io === "undefined") {
         setStatus(false,"Realtime library unavailable");
         return;
     }
 
-    socket = io(API_BASE,{transports:["websocket","polling"]});
+    socket = io(API_BASE,{
+        transports:["websocket","polling"]
+    });
 
     socket.on("connect",async () => {
         setStatus(true,"Real-time connected");
+
         if (currentProfile?._id) {
             socket.emit("register-user",currentProfile._id);
             await loadPendingRequests();
@@ -793,30 +960,48 @@ function connectRealtime() {
         }
     });
 
-    socket.on("disconnect",() => setStatus(false,"Reconnecting..."));
-    socket.on("connect_error",() => setStatus(false,"Server offline"));
+    socket.on("disconnect",() => {
+        setStatus(false,"Reconnecting...");
+    });
+
+    socket.on("connect_error",() => {
+        setStatus(false,"Server offline");
+    });
 
     socket.on("notification",notification => {
         if (notification.type === "connection_request") {
             showConnectionRequest(notification);
         } else {
-            showToast(notification.title || "ReConnect",notification.message || "");
+            showToast(
+                notification.title || "ReConnect",
+                notification.message || ""
+            );
         }
     });
 
     socket.on("connection-request-updated",data => {
-        showToast(data.title || "Connection Update",data.message || "");
+        showToast(
+            data.title || "Connection Update",
+            data.message || ""
+        );
         loadConnections();
     });
 }
 
+/* CLOSE POPUPS WHEN CLICKING OUTSIDE */
 $("editProfileOverlay").addEventListener("click",event => {
-    if (event.target === $("editProfileOverlay")) closeEditProfile();
-});
-$("requestOverlay").addEventListener("click",event => {
-    if (event.target === $("requestOverlay")) closeRequestPopup();
+    if (event.target === $("editProfileOverlay")) {
+        closeEditProfile();
+    }
 });
 
+$("requestOverlay").addEventListener("click",event => {
+    if (event.target === $("requestOverlay")) {
+        closeRequestPopup();
+    }
+});
+
+/* START APP */
 connectRealtime();
 
 if (currentProfile?._id) {
