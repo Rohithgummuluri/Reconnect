@@ -13,19 +13,29 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-    process.env.CLIENT_URL || "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
-];
+  process.env.CLIENT_URL,
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000"
+].filter(Boolean);
 
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
+  origin: function (origin, callback) {
+    // Allow local development origins only.
+    // Use Live Server instead of opening index.html directly.
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Origin not allowed by CORS"));
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
+
 
 const io = new Server(server, {
     cors: {

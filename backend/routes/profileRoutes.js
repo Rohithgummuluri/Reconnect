@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
             fullName,
             schoolName,
             batchYear,
+            schoolLocation,
             villageName,
             mobileNumber,
             phoneVisibility,
@@ -31,7 +32,7 @@ router.post("/", async (req, res) => {
             !fullName ||
             !schoolName ||
             !batchYear ||
-            !villageName ||
+            !(schoolLocation || villageName) ||
             !mobileNumber
         ) {
             return res.status(400).json({
@@ -53,7 +54,12 @@ router.post("/", async (req, res) => {
             fullName: fullName.trim(),
             schoolName: schoolName.trim(),
             batchYear: String(batchYear).trim(),
-            villageName: villageName.trim(),
+            ...(schoolLocation
+                ? { schoolLocation: schoolLocation.trim() }
+                : {}),
+            ...(villageName
+                ? { villageName: villageName.trim() }
+                : {}),
             mobileNumber: mobileNumber.trim(),
 
             phoneVisibility:
@@ -114,6 +120,7 @@ router.patch("/:profileId", async (req, res) => {
             fullName,
             schoolName,
             batchYear,
+            schoolLocation,
             villageName,
             mobileNumber,
             phoneVisibility,
@@ -129,7 +136,7 @@ router.patch("/:profileId", async (req, res) => {
             !fullName ||
             !schoolName ||
             !batchYear ||
-            !villageName ||
+            !(schoolLocation || villageName) ||
             !mobileNumber
         ) {
             return res.status(400).json({
@@ -151,7 +158,6 @@ router.patch("/:profileId", async (req, res) => {
             fullName: fullName.trim(),
             schoolName: schoolName.trim(),
             batchYear: String(batchYear).trim(),
-            villageName: villageName.trim(),
             mobileNumber: mobileNumber.trim(),
 
             educationCategory: cleanOptional(educationCategory),
@@ -160,6 +166,14 @@ router.patch("/:profileId", async (req, res) => {
             districtName: cleanOptional(districtName),
             memoryBox: cleanOptional(memoryBox)
         };
+
+        if (typeof schoolLocation === "string" && schoolLocation.trim()) {
+            updateData.schoolLocation = schoolLocation.trim();
+        }
+
+        if (typeof villageName === "string" && villageName.trim()) {
+            updateData.villageName = villageName.trim();
+        }
 
         // Update phone visibility only if a valid value is provided
         if (

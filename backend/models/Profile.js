@@ -24,7 +24,11 @@ const profileSchema = new mongoose.Schema(
 
         villageName: {
             type: String,
-            required: true,
+            trim: true
+        },
+
+        schoolLocation: {
+            type: String,
             trim: true
         },
 

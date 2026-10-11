@@ -1658,7 +1658,7 @@ footer span {
             <p>
 
                 Find old school friends using
-                school, village and batch details.
+                school location and batch details.
 
             </p>
 
@@ -1772,13 +1772,13 @@ footer span {
                 <div class="field">
 
                     <label>
-                        Village / Hometown
+                        School / College Location
                     </label>
 
                     <input
                         type="text"
-                        id="villageName"
-                        placeholder="Enter village name"
+                        id="schoolLocation"
+                        placeholder="Enter school or college town / city"
                         required>
 
                 </div>
@@ -1921,13 +1921,13 @@ footer span {
             <div class="field">
 
                 <label>
-                    Village / Hometown
+                    School / College Location
                 </label>
 
                 <input
                     type="text"
-                    id="searchVillage"
-                    placeholder="Enter village">
+                    id="searchLocation"
+                    placeholder="Enter school or college town / city">
 
             </div>
 
@@ -2038,7 +2038,7 @@ footer span {
 
         ReConnect is designed to help people
         find their childhood friends through
-        school, village and batch information.
+        school, school location and batch information.
 
         Our goal is to bring back friendships
         and meaningful memories.
@@ -2263,12 +2263,12 @@ footer span {
                 <div class="edit-field">
 
                     <label>
-                        Village / Hometown
+                        School / College Location
                     </label>
 
                     <input
                         type="text"
-                        id="editVillageName"
+                        id="editSchoolLocation"
                         required>
 
                 </div>
@@ -2673,6 +2673,14 @@ async function apiRequest(
     path,
     options = {}
 ) {
+    if (
+        window.location.protocol ===
+        "file:"
+    ) {
+        throw new Error(
+            "Open ReConnect with VS Code Live Server (http://127.0.0.1:5500); opening index.html directly prevents profile saving."
+        );
+    }
 
     const response =
         await fetch(
@@ -2755,10 +2763,10 @@ document
                     .trim();
 
 
-            const village =
+            const schoolLocation =
                 document
                     .getElementById(
-                        "villageName"
+                        "schoolLocation"
                     )
                     .value
                     .trim();
@@ -2823,8 +2831,7 @@ document
                                     batchYear:
                                         batch,
 
-                                    villageName:
-                                        village,
+                                    schoolLocation,
 
                                     mobileNumber:
                                         phone
@@ -3008,17 +3015,23 @@ async function loadMyProfile() {
                 <div class="my-profile-item">
 
                     <span>
-                        Village / Hometown
+                        School / College Location
                     </span>
 
                     <strong>
                         ${escapeHtml(
-                            currentProfile.villageName
+                            currentProfile.schoolLocation || "Not added"
                         )}
                     </strong>
 
                 </div>
 
+                ${currentProfile.villageName ? `
+                    <div class="my-profile-item">
+                        <span>Previously saved Hometown</span>
+                        <strong>${escapeHtml(currentProfile.villageName)}</strong>
+                    </div>
+                ` : ""}
 
                 <div class="my-profile-item">
 
@@ -3114,10 +3127,10 @@ function openEditProfile() {
 
     document
         .getElementById(
-            "editVillageName"
+            "editSchoolLocation"
         )
         .value =
-        currentProfile.villageName ||
+        currentProfile.schoolLocation ||
         "";
 
 
@@ -3206,10 +3219,10 @@ document
                     .trim();
 
 
-            const village =
+            const schoolLocation =
                 document
                     .getElementById(
-                        "editVillageName"
+                        "editSchoolLocation"
                     )
                     .value
                     .trim();
@@ -3260,8 +3273,7 @@ document
                                     batchYear:
                                         batch,
 
-                                    villageName:
-                                        village,
+                                    schoolLocation,
 
                                     mobileNumber:
                                         phone
@@ -3316,10 +3328,10 @@ document
 
 async function searchFriends() {
 
-    const village =
+    const location =
         document
             .getElementById(
-                "searchVillage"
+                "searchLocation"
             )
             .value
             .trim();
@@ -3350,7 +3362,7 @@ async function searchFriends() {
 
 
     if (
-        !village &&
+        !location &&
         !school &&
         !batch
     ) {
@@ -3384,10 +3396,10 @@ async function searchFriends() {
             new URLSearchParams();
 
 
-        if (village)
+        if (location)
             params.set(
-                "village",
-                village
+                "location",
+                location
             );
 
 
@@ -3520,18 +3532,25 @@ async function searchFriends() {
                     );
 
 
-                const villageText =
+                const locationText =
                     document.createElement(
                         "p"
                     );
 
 
-                villageText.textContent =
-                    "Village: " +
+                locationText.textContent =
+                    "School / College Location: " +
                     (
-                        profile.villageName ||
+                        profile.schoolLocation ||
                         "-"
                     );
+
+                const hometownText =
+                    document.createElement("p");
+
+                hometownText.textContent =
+                    "Previously saved Hometown: " +
+                    (profile.villageName || "-");
 
 
                 /* PHONE IS NEVER SHOWN IN SEARCH */
@@ -3618,8 +3637,12 @@ async function searchFriends() {
                 );
 
                 card.appendChild(
-                    villageText
+                    locationText
                 );
+
+                if (profile.villageName) {
+                    card.appendChild(hometownText);
+                }
 
                 card.appendChild(
                     phoneText
@@ -3943,14 +3966,20 @@ function renderRequestProfile(
         <p>
 
             <strong>
-                Village:
+                School / College Location:
             </strong>
 
             ${escapeHtml(
-                profile.villageName
+                profile.schoolLocation
             )}
 
         </p>
+        ${profile.villageName ? `
+            <p>
+                <strong>Previously saved Hometown:</strong>
+                ${escapeHtml(profile.villageName)}
+            </p>
+        ` : ""}
 
     `;
 
@@ -4028,14 +4057,20 @@ function viewRequestProfile() {
         <p>
 
             <strong>
-                Village:
+                School / College Location:
             </strong>
 
             ${escapeHtml(
-                profile.villageName
+                profile.schoolLocation
             )}
 
         </p>
+        ${profile.villageName ? `
+            <p>
+                <strong>Previously saved Hometown:</strong>
+                ${escapeHtml(profile.villageName)}
+            </p>
+        ` : ""}
 
     `;
 
@@ -4498,15 +4533,21 @@ async function loadConnections() {
                     <p>
 
                         <strong>
-                            Village:
+                            School / College Location:
                         </strong>
 
                         ${escapeHtml(
-                            profile.villageName
+                            profile.schoolLocation
                         )}
 
                     </p>
 
+                    ${profile.villageName ? `
+                        <p>
+                            <strong>Previously saved Hometown:</strong>
+                            ${escapeHtml(profile.villageName)}
+                        </p>
+                    ` : ""}
 
                     ${phoneHTML}
 

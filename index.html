@@ -139,7 +139,7 @@ footer span{color:#cdb3ff}
         <p>Find old friends and bring back meaningful memories.</p>
     </div>
     <div class="features">
-        <div class="feature-card"><h3>Reconnect</h3><p>Find old school and college friends using education and hometown details.</p></div>
+        <div class="feature-card"><h3>Reconnect</h3><p>Find old school and college friends using education and school location details.</p></div>
         <div class="feature-card"><h3>Make Memories</h3><p>Bring back meaningful friendships and shared childhood memories.</p></div>
         <div class="feature-card"><h3>Stay Connected</h3><p>Send connection requests and exchange contact details after connecting.</p></div>
     </div>
@@ -195,9 +195,9 @@ footer span{color:#cdb3ff}
                 </div>
 
                 <div class="field">
-                    <label for="villageName">Village / Hometown *</label>
-                    <input id="villageName" type="text" list="villageSuggestions" placeholder="Enter village or town" required>
-                    <datalist id="villageSuggestions">
+                    <label for="schoolLocation">School / College Location *</label>
+                    <input id="schoolLocation" type="text" list="schoolLocationSuggestions" placeholder="Enter the school or college town / city" required>
+                    <datalist id="schoolLocationSuggestions">
                         <option value="Eluru">
                         <option value="Tadepalligudem">
                         <option value="Bhimavaram">
@@ -208,11 +208,11 @@ footer span{color:#cdb3ff}
                         <option value="Jangareddygudem">
                         <option value="Nuzvid">
                     </datalist>
-                    <div class="help-text">Start typing to see available suggestions. You can also enter another place.</div>
+                    <div class="help-text">Enter the town or city where your school or college is located.</div>
                 </div>
 
                 <div class="field">
-                    <label for="districtName">District</label>
+                    <label for="districtName">School / College District</label>
                     <input id="districtName" type="text" list="districtSuggestions" placeholder="Enter district">
                     <datalist id="districtSuggestions">
                         <option value="Eluru">
@@ -269,12 +269,12 @@ footer span{color:#cdb3ff}
     <div class="panel">
         <div class="section-title">
             <h2>Find Your Friends</h2>
-            <p>Search using your friend's hometown, school, or batch.</p>
+            <p>Search using your friend's school location, school, or batch.</p>
         </div>
         <div class="form-grid">
             <div class="field">
-                <label for="searchVillage">Village / Hometown</label>
-                <input id="searchVillage" type="text" list="villageSuggestions" placeholder="Enter village">
+                <label for="searchLocation">School / College Location</label>
+                <input id="searchLocation" type="text" list="schoolLocationSuggestions" placeholder="Enter school or college town / city">
             </div>
             <div class="field">
                 <label for="searchSchool">School / College</label>
@@ -305,7 +305,7 @@ footer span{color:#cdb3ff}
         <h2>About ReConnect</h2>
         <p style="max-width:750px;margin:auto;line-height:1.7">
             ReConnect helps people find childhood friends through education, school, college,
-            village, and batch information. Our goal is to bring back friendships and meaningful memories.
+            school or college location, and batch information. Our goal is to bring back friendships and meaningful memories.
         </p>
     </div>
 </section>
@@ -354,8 +354,8 @@ footer span{color:#cdb3ff}
                     <input id="editBatchYear" type="number" required>
                 </div>
                 <div class="field">
-                    <label for="editVillageName">Village / Hometown *</label>
-                    <input id="editVillageName" required>
+                    <label for="editSchoolLocation">School / College Location *</label>
+                    <input id="editSchoolLocation" required>
                 </div>
                 <div class="field">
                     <label for="editDistrictName">District</label>
@@ -435,6 +435,12 @@ function showToast(title, message) {
 }
 
 async function apiRequest(path, options = {}) {
+    if (window.location.protocol === "file:") {
+        throw new Error(
+            "Open ReConnect with VS Code Live Server (http://127.0.0.1:5500); opening index.html directly prevents profile saving."
+        );
+    }
+
     const response = await fetch(API_BASE + path, {
         ...options,
         headers: {
@@ -462,7 +468,7 @@ function getProfileFormData(isEdit = false) {
         fullName: isEdit ? "editFullName" : "fullName",
         schoolName: isEdit ? "editSchoolName" : "schoolName",
         batchYear: isEdit ? "editBatchYear" : "batchYear",
-        villageName: isEdit ? "editVillageName" : "villageName",
+        schoolLocation: isEdit ? "editSchoolLocation" : "schoolLocation",
         mobileNumber: isEdit ? "editMobileNumber" : "mobileNumber",
         educationCategory: isEdit
             ? "editEducationCategory"
@@ -500,7 +506,7 @@ function validateProfile(data) {
         !data.fullName ||
         !data.schoolName ||
         !data.batchYear ||
-        !data.villageName ||
+        !data.schoolLocation ||
         !data.mobileNumber
     ) {
         throw new Error("Please complete all required fields.");
@@ -594,7 +600,8 @@ async function loadMyProfile() {
             ["Education Year / Batch",p.educationYear],
             ["School / College",p.schoolName],
             ["Batch Year",p.batchYear],
-            ["Village / Hometown",p.villageName],
+            ["School / College Location",p.schoolLocation],
+            ...(p.villageName ? [["Previously saved Hometown",p.villageName]] : []),
             ["District",p.districtName],
             ["Mobile Number",p.mobileNumber],
             ["Memory Box",p.memoryBox]
@@ -633,7 +640,7 @@ function openEditProfile() {
     setValue("editFullName",p.fullName);
     setValue("editSchoolName",p.schoolName);
     setValue("editBatchYear",p.batchYear);
-    setValue("editVillageName",p.villageName);
+    setValue("editSchoolLocation",p.schoolLocation);
     setValue("editMobileNumber",p.mobileNumber);
     setValue("editEducationCategory",p.educationCategory);
     setValue("editEducationLevel",p.educationLevel);
@@ -684,11 +691,11 @@ $("editProfileForm").addEventListener("submit", async event => {
 
 /* SEARCH FRIENDS */
 async function searchFriends() {
-    const village = $("searchVillage").value.trim();
+    const location = $("searchLocation").value.trim();
     const school = $("searchSchool").value.trim();
     const batch = $("searchBatch").value.trim();
 
-    if (!village && !school && !batch) {
+    if (!location && !school && !batch) {
         $("results").textContent = "Enter at least one search detail.";
         return;
     }
@@ -698,7 +705,7 @@ async function searchFriends() {
     try {
         const params = new URLSearchParams();
 
-        if (village) params.set("village",village);
+        if (location) params.set("location",location);
         if (school) params.set("school",school);
         if (batch) params.set("batch",batch);
 
@@ -726,7 +733,8 @@ async function searchFriends() {
                 <p><strong>Education:</strong> ${escapeHtml(profile.educationCategory || "")} ${escapeHtml(profile.educationLevel || "")}</p>
                 <p><strong>School / College:</strong> ${escapeHtml(profile.schoolName || "-")}</p>
                 <p><strong>Batch:</strong> ${escapeHtml(profile.batchYear || "-")}</p>
-                <p><strong>Village:</strong> ${escapeHtml(profile.villageName || "-")}</p>
+                <p><strong>School / College Location:</strong> ${escapeHtml(profile.schoolLocation || "-")}</p>
+                ${profile.villageName ? `<p><strong>Previously saved Hometown:</strong> ${escapeHtml(profile.villageName)}</p>` : ""}
                 <p>Phone: Hidden until connection is accepted.</p>
                 <button class="primary-btn" ${isMe ? "disabled" : ""}>
                     ${isMe ? "This is You" : "Send Connection Request"}
@@ -810,7 +818,8 @@ async function loadConnections() {
                 <p><strong>Education:</strong> ${escapeHtml(p.educationCategory || "")} ${escapeHtml(p.educationLevel || "")}</p>
                 <p><strong>School / College:</strong> ${escapeHtml(p.schoolName || "-")}</p>
                 <p><strong>Batch:</strong> ${escapeHtml(p.batchYear || "-")}</p>
-                <p><strong>Village:</strong> ${escapeHtml(p.villageName || "-")}</p>
+                <p><strong>School / College Location:</strong> ${escapeHtml(p.schoolLocation || "-")}</p>
+                ${p.villageName ? `<p><strong>Previously saved Hometown:</strong> ${escapeHtml(p.villageName)}</p>` : ""}
                 <div class="phone-number">
                     <span>📱 ${escapeHtml(phone || "Mobile number unavailable")}</span>
                     ${phone ? `<a class="call-btn" href="tel:${encodeURIComponent(phone)}">Call</a>` : ""}
@@ -831,7 +840,8 @@ function renderRequestProfile(profile) {
         <p><strong>Name:</strong> ${escapeHtml(profile.fullName)}</p>
         <p><strong>School / College:</strong> ${escapeHtml(profile.schoolName || "-")}</p>
         <p><strong>Batch:</strong> ${escapeHtml(profile.batchYear || "-")}</p>
-        <p><strong>Village:</strong> ${escapeHtml(profile.villageName || "-")}</p>
+        <p><strong>School / College Location:</strong> ${escapeHtml(profile.schoolLocation || "-")}</p>
+        ${profile.villageName ? `<p><strong>Previously saved Hometown:</strong> ${escapeHtml(profile.villageName)}</p>` : ""}
     `;
 }
 

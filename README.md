@@ -67,6 +67,8 @@ For example, Live Server usually opens:
 http://127.0.0.1:5500
 ```
 
+Do not open `index.html` directly as a `file://` URL. The browser blocks API requests from that origin. If saving a profile still reports a fetch error, confirm the backend started successfully and that `CLIENT_URL` in `backend/.env` matches the address opened by Live Server; restart the backend after changing `.env`.
+
 ## 3. Test with two browser windows
 
 1. Open ReConnect in Chrome.
@@ -84,7 +86,9 @@ POST `/api/profile`
 
 GET `/api/profile/:id`
 
-GET `/api/friends/search?village=&school=&batch=`
+GET `/api/friends/search?location=&school=&batch=`
+
+New profiles use `schoolLocation` for the town or city where the school or college is located. Older `villageName` values remain available as previously saved hometowns.
 
 POST `/api/friends/request`
 

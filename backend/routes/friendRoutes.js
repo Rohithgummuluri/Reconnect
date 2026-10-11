@@ -37,6 +37,18 @@ function calculateMatch(profile, search) {
         }
     }
 
+    if (search.location) {
+        fields++;
+
+        if (
+            normalize(profile.schoolLocation).includes(
+                normalize(search.location)
+            )
+        ) {
+            score += 30;
+        }
+    }
+
     if (search.batch) {
         fields++;
 
@@ -61,11 +73,12 @@ router.get("/search", async (req, res) => {
     try {
         const {
             village = "",
+            location = "",
             school = "",
             batch = ""
         } = req.query;
 
-        if (!village && !school && !batch) {
+        if (!village && !location && !school && !batch) {
             return res.status(400).json({
                 message: "Enter at least one search detail."
             });
@@ -77,6 +90,15 @@ router.get("/search", async (req, res) => {
             conditions.push({
                 villageName: {
                     $regex: village.trim(),
+                    $options: "i"
+                }
+            });
+        }
+
+        if (location) {
+            conditions.push({
+                schoolLocation: {
+                    $regex: location.trim(),
                     $options: "i"
                 }
             });
@@ -107,6 +129,7 @@ router.get("/search", async (req, res) => {
             schoolName: profile.schoolName,
             batchYear: profile.batchYear,
             villageName: profile.villageName,
+            schoolLocation: profile.schoolLocation,
 
             // Phone intentionally NOT included
 
@@ -114,6 +137,7 @@ router.get("/search", async (req, res) => {
                 profile,
                 {
                     village,
+                    location,
                     school,
                     batch
                 }
@@ -300,7 +324,7 @@ router.get(
                 })
                     .populate(
                         "sender",
-                        "fullName schoolName batchYear villageName"
+                        "fullName schoolName batchYear villageName schoolLocation"
                     )
                     .sort({
                         createdAt: -1
@@ -342,11 +366,11 @@ router.get(
                 )
                     .populate(
                         "sender",
-                        "fullName schoolName batchYear villageName"
+                        "fullName schoolName batchYear villageName schoolLocation"
                     )
                     .populate(
                         "receiver",
-                        "fullName schoolName batchYear villageName"
+                        "fullName schoolName batchYear villageName schoolLocation"
                     );
 
             if (!connection) {
@@ -540,11 +564,11 @@ router.get(
                 })
                     .populate(
                         "sender",
-                        "fullName schoolName batchYear villageName mobileNumber"
+                        "fullName schoolName batchYear villageName schoolLocation mobileNumber"
                     )
                     .populate(
                         "receiver",
-                        "fullName schoolName batchYear villageName mobileNumber"
+                        "fullName schoolName batchYear villageName schoolLocation mobileNumber"
                     )
                     .sort({
                         updatedAt: -1
@@ -574,6 +598,8 @@ router.get(
                                     other.schoolName,
                                 batchYear:
                                     other.batchYear,
+                                schoolLocation:
+                                    other.schoolLocation,
                                 villageName:
                                     other.villageName,
 
